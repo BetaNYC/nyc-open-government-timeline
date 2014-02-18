@@ -3,7 +3,6 @@ require 'spec_helper'
 describe "Event resource pages" do 
 
   describe "New" do 
-
     it "should have the content 'Create new event'" do 
       visit '/events/new'
       expect(page).to have_content('Create new event')
