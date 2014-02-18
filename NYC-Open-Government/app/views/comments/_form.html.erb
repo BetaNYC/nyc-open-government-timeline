@@ -1,5 +1,4 @@
-
-<%= form_for @comment, { action: "create" } do |f| %>
+<%= form_for [@event, @comment] do |f| %>
   <%= f.label :author, "Your handle" %>
   <%= f.text_field :author %>
   <br>

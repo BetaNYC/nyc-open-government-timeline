@@ -34,15 +34,17 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @event = Event.find(params[:event_id])
     if @comment.update_attribute(params_comment)
-      redirect_to event_comment_path
+      redirect_to event_comment_path(@event, @comment)
     else
       render "new"
     end
   end
 
   def destroy
+    @event = Event.find(params[:event_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
+    redirect_to event_url(@event)
   end
 
   private
