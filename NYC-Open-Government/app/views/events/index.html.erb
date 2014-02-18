@@ -1,13 +1,18 @@
 <h1>Timeline</h1>
+<ul>
 <% @events.each do |event| %>
-  <li>
     <%= event.name %>
-    <%= event.category %>
-    <%= event.description %>
-    <%= event.status %>
-    <%= event.url %>
     <%= link_to 'Show', event_path(event) %>
     <%= link_to 'Edit', edit_event_path(event) %>
     <%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %>
+    <ul>
+      <li><%= event.category %></li>
+      <li><%= event.description %></li>
+      <li><%= event.status %></li>
+      <li><%= event.date %></li>
+      <li><%= event.url %></li>
+    </ul>   
   </li>
 <% end %>
+</ul>
+

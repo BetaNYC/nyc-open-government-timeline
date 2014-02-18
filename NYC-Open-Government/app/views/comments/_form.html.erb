@@ -2,7 +2,9 @@
 <%= form_for @comment, url: { action: "create" } do |f| %>
   <%= f.label :author, "Your handle" %>
   <%= f.text_field :author %>
+  <br>
   <%= f.label :content, "Comment" %>
   <%= f.text_area :content %>
+  <br>
   <%= submit_tag("Post comment") %>
 <% end %>
