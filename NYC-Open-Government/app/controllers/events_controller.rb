@@ -12,7 +12,7 @@ class EventsController < ApplicationController
     @categories = Event.all.map{|e| e.category}.uniq
     @event = Event.new(params_event)
     if @event.save
-      redirect_to event_path
+      redirect_to events_path
     else
       render "new"
     end
@@ -25,7 +25,7 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update_attributes(params_event)
-      redirect_to event_path
+      redirect_to events_path
     else
       render "edit"
     end
@@ -46,3 +46,7 @@ class EventsController < ApplicationController
       params.require(:event).permit(:name, :description, :category, :date, :url, :status)
     end
 end
+
+
+# date will be accomplished with jQuery
+# f.collection_select(:event, :id, @events, :id, :category)

@@ -1,1 +1,10 @@
 <h1>Timeline</h1>
+<% @events.each do |event| %>
+  <li>
+    <%= event.name %>
+    <%= event.category %>
+    <%= event.description %>
+    <%= event.status %>
+    <%= event.url %>
+  </li>
+<% end %>
