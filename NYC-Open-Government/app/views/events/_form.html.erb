@@ -16,6 +16,13 @@
     <%= f.label :status %>
     <%= f.text_field :status %>
   </div> 
+
+  <div class="field">
+    <%= f.label :date %>
+    <%= date_field :event, :date %>
+  </div>
+
+
   <div class="field">
     <%= f.label :url %>
     <%= f.text_field :url %>
