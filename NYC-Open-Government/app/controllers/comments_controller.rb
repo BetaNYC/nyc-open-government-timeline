@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params_comment)
     @comment.event_id = params[:event_id]
     if @comment.save
-      redirect_to events_path
+      redirect_to event_url(@event)
     else
       render "new"
     end
@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @event = Event.find(params[:event_id])
     if @comment.update_attribute(params_comment)
-      redirect_to events_path
+      redirect_to event_url(@event)
     else
       render "new"
     end
