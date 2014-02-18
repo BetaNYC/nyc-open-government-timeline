@@ -3,10 +3,14 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
+
+
   <div class="field">
     <%= f.label :category %>
-    <%= f.collection_select(:id, @categories, :category) %>
+    <%= f.collection_select(:event, :id, @events, :id, :category) %>
   </div>
+
+
   <div class="field">
     <%= f.label :description %>
     <%= f.text_area :description %>
@@ -27,3 +31,5 @@
     <%= f.submit 'Save' %>
   </div>
 <% end %>
+
+<!-- .map{|e| e.category}.uniq -->
