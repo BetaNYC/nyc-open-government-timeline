@@ -9,7 +9,8 @@
   <% @comments.each do |comment| %>
     <tr>
       <td>
-        <%= Event.find(comment.event_id).name %>
+        <% @event = Event.find(comment.event_id) %>
+        <%= @event.name %>
       </td>
       <td>
         <%= comment.author %>
@@ -17,6 +18,17 @@
       <td>
         <%= comment.content %>
       </td>
+      <td>
+        <%= link_to 'Show', event_comment_path(@event, comment) %>
+      </td>
+      <td>
+        <%= link_to 'Edit', edit_event_comment_path(@event, comment) %>
+      </td>
+      <td>
+        <%= link_to 'Destroy', event_comment_path(@event, comment), :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+      </td>
     </tr>
   <% end %>
 </table>
+<br/>
+<%= link_to 'New Comment', new_event_comment_path(@event) %>
