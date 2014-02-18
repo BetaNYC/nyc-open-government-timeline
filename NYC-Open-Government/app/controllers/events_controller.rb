@@ -9,6 +9,7 @@ class EventsController < ApplicationController
   end
 
   def create
+    @categories = Event.all.map{|e| e.category}.uniq
     @event = Event.new(params_event)
     if @event.save
       redirect_to event_path
