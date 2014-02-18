@@ -1,1 +1,8 @@
-<h1>Create new event</h1>
+<h1>Show an event's profile page </h1>
+<ul>
+  <li>Name: <%= @event.name %></li>
+  <li>Description: <%= @event.description %></li>
+  <li>Category: <%= @event.category %></li>
+  <li>Date: <%= @event.date %></li>
+  <li>Event Url: <a href= "<%= @event.url %>"><%= @event.url %></a></li>
+</ul>

@@ -6,5 +6,8 @@
     <%= event.description %>
     <%= event.status %>
     <%= event.url %>
+    <%= link_to 'Show', event_path(event) %>
+    <%= link_to 'Edit', edit_event_path(event) %>
+    <%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %>
   </li>
 <% end %>
