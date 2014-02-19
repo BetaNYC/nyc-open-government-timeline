@@ -48,7 +48,10 @@ class CommentsController < ApplicationController
     @event = Event.find(params[:event_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to event_url(@event)
+    respond_to do |format|
+      format.html { redirect_to event_comments_url }
+      format.json { head :no_content }
+    end
   end
 
   private
