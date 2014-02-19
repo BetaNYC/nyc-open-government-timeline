@@ -1,3 +1,5 @@
+Dir["./model/*.rb"].each {|file| require file}
+
 class EventsController < ApplicationController
 
   def index
