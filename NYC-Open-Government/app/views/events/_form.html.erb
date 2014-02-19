@@ -1,12 +1,26 @@
 <%= form_for @event do |f| %>
+  <% if @event.errors.any? %>
+    <div class="error_explanation_for_events_new" id="error_explanation">
+      <ul>
+        <% @event.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
+
   <div class="field">
     <%= f.label :category %>
     <%= f.select(:category, [["--- select one ---", "select one"],["Amendment to Law", "Amendment to Law"], ["API", "API"], ["App", "App"], ["Appointment", "Appointment"], ["Community - Data", "Community - Data"], ["Community - Website", "Community - Website"], ["Contest", "Contest"], ["Copyright", "Copyright"], ["Event", "Event"], ["Executive Order", "Executive Order"], ["Federal Law","Federal Law"], ["Hearing", "Hearing"], ["Law", "Law"], ["Local Law", "Local Law"], ["Meeting", "Meeting"], ["Policy", "Policy"], ["Publication", "Publication"], ["Software", "Software"], ["Website", "Website"]]) %>
   </div>
+
   <div class="field">
     <%= f.label :description %>
     <%= f.text_area :description %>
@@ -22,12 +36,13 @@
     <%= date_field :event, :date %>
   </div>
 
-
   <div class="field">
     <%= f.label :url %>
     <%= f.text_field :url %>
   </div> 
+
   <div class="actions">
     <%= f.submit 'Save' %>
   </div>
+
 <% end %>

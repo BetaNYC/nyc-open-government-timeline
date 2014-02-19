@@ -1,4 +1,15 @@
 <%= form_for [@event, @comment] do |f| %>
+  <% if @comment.errors.any? %>
+    <div class="error_explanation_for_comments_new" id="error_explanation">
+      <ul>
+        <% @comment.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= f.label :author, "Your handle" %>
   <%= f.text_field :author %>
   <br>
