@@ -58,4 +58,7 @@ NYCOpenGovernment::Application.routes.draw do
     resources :comments
   end
 
+  get '/events/categories' => 'categories#index'
+  get '/events/categories/:category' => 'categories#show'
+
 end

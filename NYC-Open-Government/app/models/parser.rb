@@ -29,13 +29,22 @@ class Parser
     parse.each do |hash|
       array = hash["Date"].split("-")
       date = [array[1], array[0], array[2]].join("-")
-      Event.create(
+      event_object = Event.create(
         :date => date,
         :name => hash["Name"],
         :url => hash["URL"],
-        :category => hash["Type of Event"],
         :description => hash["Description"]
       )
+      category_name = hash["Type of Event"]  #grabs category string name from csv
+      category = Category.find_by_name(category_name) #find the category object with name = string name
+
+      if category   #if that category exists in the db already
+        event_object.categories << category    # add existing category to the event objects categories
+      else      #if it doesn't exist
+        category_object = Category.create(:name => category_name)   #make a new category, with name equal to cat string name
+        event_object.categories << category_object    #add that new category to the event objects categories
+      end
+      event_object.save
     end
   end
 
