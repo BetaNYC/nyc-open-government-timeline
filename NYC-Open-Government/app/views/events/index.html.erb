@@ -6,13 +6,13 @@
     <%= link_to 'Edit', edit_event_path(event) %>
     <%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %>
     <ul>
-      <li><%= event.category %></li>
-      <li><%= event.description %></li>
-      <li><%= event.status %></li>
-      <li><%= event.date %></li>
-      <li><%= event.url %></li>
+      <li>Type of Event: <%= event.category %></li>
+      <li>Description: <%= event.description %></li>
+      <li>Status: <%= event.status %></li>
+      <li>Date: <%= event.date %></li>
+      <li>Website: <%= event.url %></li>
     </ul>   
   </li>
 <% end %>
 </ul>
-
+<%= link_to 'Create Event', new_event_path %>

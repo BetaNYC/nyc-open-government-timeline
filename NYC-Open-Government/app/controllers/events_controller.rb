@@ -1,3 +1,5 @@
+Dir["./model/*.rb"].each {|file| require file}
+
 class EventsController < ApplicationController
 
   def index
@@ -9,7 +11,6 @@ class EventsController < ApplicationController
   end
 
   def create
-    @categories = Event.all.map{|e| e.category}.uniq
     @event = Event.new(params_event)
     if @event.save
       redirect_to events_path
@@ -46,7 +47,3 @@ class EventsController < ApplicationController
       params.require(:event).permit(:name, :description, :category, :date, :url, :status)
     end
 end
-
-
-# date will be accomplished with jQuery
-# f.collection_select(:event, :id, @events, :id, :category)

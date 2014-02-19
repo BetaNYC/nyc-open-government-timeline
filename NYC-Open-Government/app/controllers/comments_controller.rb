@@ -33,10 +33,14 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     @event = Event.find(params[:event_id])
-    if @comment.update_attribute(params_comment)
-      redirect_to event_comment_path(@event, @comment)
-    else
-      render "new"
+    respond_to do |format|
+      if @comment.update_attributes(params[:comment])
+        format.html { redirect_to event_url(@event), notice: 'comment was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -44,11 +48,14 @@ class CommentsController < ApplicationController
     @event = Event.find(params[:event_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to event_url(@event)
+    respond_to do |format|
+      format.html { redirect_to event_url(@event) }
+      format.json { head :no_content }
+    end
   end
 
   private
     def params_comment
-      params.require(:comment).permit(:content, :author)
+      params.require(:comment).permit(:author, :content)
     end
 end
