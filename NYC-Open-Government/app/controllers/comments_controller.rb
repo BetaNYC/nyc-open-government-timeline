@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
     @event = Event.find(params[:event_id])
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
-        format.html { redirect_to event_comment_path, notice: 'comment was successfully updated.' }
+        format.html { redirect_to event_url(@event), notice: 'comment was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
