@@ -12,6 +12,6 @@ class Event < ActiveRecord::Base
   validates :date, :presence => true
   validates :name, :presence => true,  :length => { :maximum => 150, :minimum => 2, :message => "must be 2-150 characters in length"}
   validates :category, :presence => true
-  validates :description, :presence => true, :length => { :maximum => 700, :minimum => 25, :message => "must be 25-700 characters in length"}
+  validates :description, :presence => true, :length => { :maximum => 700, :minimum => 5, :message => "must be 5-700 characters in length"}
   validates_with EventValidator
 end
