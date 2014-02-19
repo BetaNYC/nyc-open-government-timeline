@@ -1,4 +1,5 @@
 require 'csv'
+require 'date'
 
 class Parser
   attr_accessor :output
@@ -26,8 +27,10 @@ class Parser
 
   def add_to_database
     parse.each do |hash|
+      array = hash["Date"].split("-")
+      date = [array[1], array[0], array[2]].join("-")
       Event.create(
-        :date => hash["Date"],
+        :date => date,
         :name => hash["Name"],
         :url => hash["URL"],
         :category => hash["Type of Event"],
