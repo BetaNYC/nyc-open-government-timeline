@@ -1,9 +1,11 @@
-<%= form_for [@event, @comment] do |f| %>
-  <%= f.label :author, "Your handle" %>
-  <%= f.text_field :author %>
-  <br>
-  <%= f.label :content, "Comment" %>
-  <%= f.text_area :content %>
-  <br>
-  <%= submit_tag("Post comment") %>
+<%= form_for @event do |event_form| %>
+  <%= event_form.fields_for :comment do |comment_fields| %>
+    <%= comment_fields.label :author, "Your handle" %>
+    <%= comment_fields.text_field :author %>
+    <br>
+    <%= comment_fields.label :content, "Comment" %>
+    <%= comment_fields.text_area :content %>
+    <br>
+    <%= submit_tag("Post comment") %>
+  <% end %>
 <% end %>

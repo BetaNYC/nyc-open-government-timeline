@@ -7,6 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'date'
 
+params = {
+
+}
+
 events = Event.create([{
                         name: "FOIA", 
                         description: "Freeodom of Information Act", 
@@ -32,18 +36,12 @@ events = Event.create([{
                         status: "Passed"
                           }])
 
-comments = Comment.create([{
-                            author: "Uzo", 
-                            content: "Hello world!",
-                            event_id: 1
-                              }, 
-                            {
-                            author: "Oliver",
-                            content: "Poop",
-                            event_id: 2
-                              }, 
-                            {
-                            author: "Katie",
-                            content: "Denver is cool",
-                            event_id: 3
-                              }])
+
+
+events.each_with_index do |event, i|
+    event.comments.build({
+                          author: "Test User #{i}", 
+                          content: "Foo #{i}"
+                            })
+    event.save
+end
