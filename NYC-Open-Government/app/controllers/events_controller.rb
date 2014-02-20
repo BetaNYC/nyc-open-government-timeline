@@ -12,6 +12,7 @@ class EventsController < ApplicationController
   end
 
   def create
+    # debugger
     @event = Event.new(clean_params(params_event))
     @event.categories << audit_categories(params_event)
     if @event.save
