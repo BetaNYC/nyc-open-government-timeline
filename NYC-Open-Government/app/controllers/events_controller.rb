@@ -11,7 +11,9 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(params_event)
+    category = Category.find(params_event[:categories].to_i)
+    @event = Event.new(clean_params(params_event))  #remove :categories from params
+    @event.categories << category
     if @event.save
       redirect_to events_path
     else
@@ -24,7 +26,9 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find(params[:id])
+    category = Category.find(params_event[:categories].to_i)
+    @event = Event.find(clean_params(params_event)) 
+    @event.categories << category
     if @event.update_attributes(params_event)
       redirect_to events_path
     else
