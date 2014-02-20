@@ -2,7 +2,11 @@ module EventHelper
 
   def clean_params(params)
     new_params = {}
-    params.each {|k, v| k != "categories" ? new_params[k] = v : nil} 
+    params.each do |k, v| 
+      unless k == "categories_attributes"
+        new_params[k] = v
+      end
+    end
     new_params
   end
 

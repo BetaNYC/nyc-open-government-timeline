@@ -11,9 +11,24 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(params_event)
-    debugger
-    # @event.categories << category
+    attributes_hash = params_event[:categories_attributes]
+    array = []
+    attributes_hash.each do |k, v|
+      v.each do |attr, value|
+        array << value
+      end
+    end
+    objects = []
+    array.each do |name|
+      found = Category.find_by_name(name)
+      if found
+        objects << found
+      else
+        objects << Category.create(:name => name)
+      end
+    end
+    @event = Event.new(clean_params(params_event))
+    @event.categories << objects
     if @event.save
       redirect_to events_path
     else
@@ -26,7 +41,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    category = Category.find(params_event[:categories].to_i)
+    hash = params_event[:categories_attributes]
     @event = Event.find(clean_params(params_event)) 
     @event.categories << category
     if @event.update_attributes(params_event)
