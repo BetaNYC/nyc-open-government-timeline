@@ -1,7 +1,7 @@
 <h1> <%= @event.name %> </h1>
 <ul>
   <li>Description: <%= @event.description %></li>
-  <li>Category: <%= @event.category %></li>
+  <li>Category: <%= @event.categories.collect{|cat|cat.name}.join(', ') %></li>
   <li>Date: <%= @event.date %></li>
   <li>Event Url: <a href= "<%= @event.url %>"><%= @event.url %></a></li>
   <li><%= link_to 'Edit', edit_event_path(@event) %></li>
