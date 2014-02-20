@@ -14,4 +14,24 @@ module EventHelper
     event.categories.collect{|cat| cat.name}.join(', ')
   end
 
+  def audit_categories(params)
+    attributes_hash = params[:categories_attributes]
+    array = []
+    attributes_hash.each do |k, v|
+      v.each do |attr, value|  # ex. value "Local Law"
+        array << value
+      end
+    end
+    objects = []
+    array.each do |name|
+      found = Category.find_by_name(name)
+      if found
+        objects << found
+      else
+        objects << Category.create(:name => name)
+      end
+    end
+    objects
+  end
+
 end

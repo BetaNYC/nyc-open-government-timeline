@@ -38,6 +38,12 @@ class CategoriesController < ApplicationController
     redirect_to category_path 
   end
 
+  def destory_link
+    @event = 
+    @category = 
+    events.category
+  end    
+
   def show
     @category = Category.find(params[:id])
   end

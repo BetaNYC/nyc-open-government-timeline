@@ -8,27 +8,12 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @status = "new"
   end
 
   def create
-    attributes_hash = params_event[:categories_attributes]
-    array = []
-    attributes_hash.each do |k, v|
-      v.each do |attr, value|
-        array << value
-      end
-    end
-    objects = []
-    array.each do |name|
-      found = Category.find_by_name(name)
-      if found
-        objects << found
-      else
-        objects << Category.create(:name => name)
-      end
-    end
     @event = Event.new(clean_params(params_event))
-    @event.categories << objects
+    @event.categories << audit_categories(params_event)
     if @event.save
       redirect_to events_path
     else
@@ -38,13 +23,13 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    @status = "edit"
   end
 
   def update
-    hash = params_event[:categories_attributes]
-    @event = Event.find(clean_params(params_event)) 
-    @event.categories << category
-    if @event.update_attributes(params_event)
+    @event = Event.find(params[:id])
+    @event.categories << audit_categories(params_event)
+    if @event.update_attributes(clean_params(params_event))
       redirect_to events_path
     else
       render "edit"

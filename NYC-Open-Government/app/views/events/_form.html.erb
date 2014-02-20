@@ -16,13 +16,25 @@
     <%= f.text_field :name %>
   </div>
 
-  <div class="field">
-    <%= f.fields_for :categories, @event.categories.build do |cat_form| %> 
-      <%= cat_form.collection_select(:name, Category.all, :name, :name) %>
-      <%= cat_form.link_to_remove "Remove this category" %>
-    <% end %>
-    <%= f.link_to_add "Add another category", :categories %>
-  </div>
+  <% if @status == "new" %>
+    <div class="field">
+      <%= f.fields_for :categories, @event.categories.build do |cat_form| %> 
+        <%= cat_form.collection_select(:name, Category.all, :name, :name) %>
+        <%= cat_form.link_to_remove "Remove this category" %>
+      <% end %>
+      <%= f.link_to_add "Add another category", :categories %>
+    </div>
+  <% else%>
+    <div class="field">
+      <ul>
+      <% names = @event.categories.collect{|cat|cat.name} %>
+      <% names.each do |name| %>
+        <li><%= name %></li>
+        <li><%= link_to 'Destroy', </li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :description %>
