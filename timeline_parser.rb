@@ -1,5 +1,6 @@
 require 'csv'
 require 'awesome_print'
+require 'debugger'
 
 class CSVParser
   attr_accessor :output
@@ -13,6 +14,7 @@ class CSVParser
   end
 
   def parse
+    debugger
     data_rows.each do |row|
       hash = {}  
       row.each_with_index do |attribute, i|
