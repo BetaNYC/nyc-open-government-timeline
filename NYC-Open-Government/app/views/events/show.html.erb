@@ -4,9 +4,6 @@
   <li>Category: <%= @event.category %></li>
   <li>Date: <%= @event.date %></li>
   <li>Event Url: <a href= "<%= @event.url %>"><%= @event.url %></a></li>
-<<<<<<< HEAD
-</ul>
-=======
   <li><%= link_to 'Edit', edit_event_path(@event) %></li>
   <li><%= link_to 'Destroy', @event, confirm: 'Are you sure?', method: :delete %></li>
 </ul>
@@ -37,4 +34,3 @@
 <br>
 <%= link_to 'New Comment', new_event_comment_path(@event) %>
 <%= link_to 'Back', events_path %>
->>>>>>> 690071b889dd527d3d43c5ddf898d43d7222f350
