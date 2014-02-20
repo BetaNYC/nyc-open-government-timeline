@@ -11,9 +11,9 @@ class EventsController < ApplicationController
   end
 
   def create
-    category = Category.find(params_event[:categories].to_i)
-    @event = Event.new(clean_params(params_event))  #remove :categories from params
-    @event.categories << category
+    @event = Event.new(params_event)
+    debugger
+    # @event.categories << category
     if @event.save
       redirect_to events_path
     else
@@ -48,6 +48,6 @@ class EventsController < ApplicationController
 
   private
     def params_event
-      params.require(:event).permit(:name, :description, :categories, :date, :url, :status)
+      params.require(:event).permit(:name, :description, :date, :url, :status, categories_attributes: [:name])
     end
 end

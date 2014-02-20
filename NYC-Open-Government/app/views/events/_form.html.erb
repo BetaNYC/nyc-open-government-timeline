@@ -1,4 +1,4 @@
-<%= form_for @event do |f| %>
+<%= nested_form_for @event do |f| %>
   <% if @event.errors.any? %>
     <div class="error_explanation_for_events_new" id="error_explanation">
       <ul>
@@ -17,7 +17,11 @@
   </div>
 
   <div class="field">
-    <%= f.collection_select(:categories, Category.all, :id, :name) %>
+    <%= f.fields_for :categories, @event.categories.build do |cat_form| %> 
+      <%= cat_form.collection_select(:name, Category.all, :name, :name) %>
+      <%= cat_form.link_to_remove "Remove this category" %>
+    <% end %>
+    <%= f.link_to_add "Add another category", :categories %>
   </div>
 
   <div class="field">
@@ -44,3 +48,5 @@
   </div>
 
 <% end %>
+
+<%= javascript_include_tag :defaults, "nested_form" %>

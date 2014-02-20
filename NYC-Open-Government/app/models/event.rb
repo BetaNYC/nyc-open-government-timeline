@@ -7,7 +7,7 @@ class EventValidator < ActiveModel::Validator
 end
 
 class Event < ActiveRecord::Base
-  attr_accessible :date, :name, :categories, :description, :status, :url
+  attr_accessible :date, :name, :categories, :description, :status, :url, :categories_attributes
   has_many :comments
   has_many :category_events
   has_many :categories, :through => :category_events
@@ -17,6 +17,8 @@ class Event < ActiveRecord::Base
   validates :description, :presence => true, :length => { :maximum => 700, :minimum => 5, :message => "must be 5-700 characters in length"}
   validates_with EventValidator
 
+  accepts_nested_attributes_for :categories
+  
   def self.make_events
     Parser.new('lib/events.csv').add_to_database
   end
