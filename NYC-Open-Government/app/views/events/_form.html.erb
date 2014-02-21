@@ -32,7 +32,7 @@
           <li><%= cat.name %>
               <%= link_to 'Destroy',
                 :controller => 'eventcategories',
-                :action => "destroy_link", 
+                :action => "delete", 
                 :event_id => @event.id, 
                 :id => cat.id, 
                 :method => :delete %>

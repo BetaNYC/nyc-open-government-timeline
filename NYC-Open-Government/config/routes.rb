@@ -1,6 +1,6 @@
 NYCOpenGovernment::Application.routes.draw do
 
-  get '/events/categories' => 'categories#destroy_link'
+  get '/events/categories' => 'eventcategories#delete'
   get '/events/categories/:category' => 'categories#show'
 
   resources :events do

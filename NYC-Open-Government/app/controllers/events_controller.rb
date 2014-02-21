@@ -1,4 +1,4 @@
-Dir["./model/*.rb"].each {|file| require file}
+require "parser.rb"
 
 class EventsController < ApplicationController
 
