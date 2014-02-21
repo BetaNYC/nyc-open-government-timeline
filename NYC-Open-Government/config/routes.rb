@@ -1,4 +1,13 @@
 NYCOpenGovernment::Application.routes.draw do
+
+  get '/events/categories' => 'categories#destroy_link'
+  get '/events/categories/:category' => 'categories#show'
+
+  resources :events do
+    resources :comments
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -54,12 +63,5 @@ NYCOpenGovernment::Application.routes.draw do
   #     resources :products
   #   end
 
-  delete '/delete-category' => 'categories#delete_link'
-  get '/events/categories' => 'categories#index'
-  get '/events/categories/:category' => 'categories#show'
-
-  resources :events do
-    resources :comments
-  end
 
 end
