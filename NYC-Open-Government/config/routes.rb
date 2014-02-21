@@ -54,11 +54,12 @@ NYCOpenGovernment::Application.routes.draw do
   #     resources :products
   #   end
 
+  delete '/delete-category' => 'categories#delete_link'
+  get '/events/categories' => 'categories#index'
+  get '/events/categories/:category' => 'categories#show'
+
   resources :events do
     resources :comments
   end
-
-  get '/events/categories' => 'categories#index'
-  get '/events/categories/:category' => 'categories#show'
 
 end

@@ -38,10 +38,12 @@ class CategoriesController < ApplicationController
     redirect_to category_path 
   end
 
-  def destory_link
-    @event = 
-    @category = 
-    events.category
+  def destroy_link
+    debugger
+    @event = Event.find(params[:event_id])
+    @category = Category.find(params[:id])
+    @event.categories.delete(@category)
+    redirect_to edit_event_path
   end    
 
   def show

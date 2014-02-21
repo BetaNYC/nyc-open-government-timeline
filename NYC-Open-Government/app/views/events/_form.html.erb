@@ -27,11 +27,11 @@
   <% else%>
     <div class="field">
       <ul>
-      <% names = @event.categories.collect{|cat|cat.name} %>
-      <% names.each do |name| %>
-        <li><%= name %></li>
-        <li><%= link_to 'Destroy', </li>
-      <% end %>
+        <% categories = @event.categories.collect{|cat|cat} %>
+        <% categories.each do |cat| %>
+          <li><%= cat.name %></li>
+          <li><%= link_to 'Destroy', :controller => 'categories', :action => "destroy_link", :event_id => @event.id, :id => cat.id, :method => :delete %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
