@@ -30,7 +30,7 @@
         <% categories = @event.categories.collect{|cat|cat} %>
         <% categories.each do |cat| %>
           <li><%= cat.name %>
-              <%= link_to 'Destroy', 
+              <%= link_to 'Destroy',
                 :controller => 'eventcategories',
                 :action => "destroy_link", 
                 :event_id => @event.id, 
