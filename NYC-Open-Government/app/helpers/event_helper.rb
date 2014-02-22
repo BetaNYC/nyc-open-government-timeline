@@ -17,6 +17,7 @@ module EventHelper
   def audit_categories(params)
     attributes_hash = params[:categories_attributes]
     array = []
+    
     attributes_hash.each do |k, v|
       v.each do |attr, value|  # ex. value "Local Law"
         array << value
