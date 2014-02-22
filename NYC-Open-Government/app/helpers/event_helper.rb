@@ -16,23 +16,26 @@ module EventHelper
 
   def audit_categories(params)
     attributes_hash = params[:categories_attributes]
-    array = []
-    
-    attributes_hash.each do |k, v|
-      v.each do |attr, value|  # ex. value "Local Law"
-        array << value
+    if attributes_hash 
+      array = []
+      attributes_hash.each do |k, v|
+        v.each do |attr, value|  # ex. value "Local Law"
+          array << value
+        end
       end
-    end
-    objects = []
-    array.each do |name|
-      found = Category.find_by_name(name)
-      if found
-        objects << found
-      else
-        objects << Category.create(:name => name)
+      objects = []
+      array.each do |name|
+        found = Category.find_by_name(name)
+        if found
+          objects << found
+        else
+          objects << Category.create(:name => name)
+        end
       end
+      objects
+    else
+      []
     end
-    objects
   end
 
 end
