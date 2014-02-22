@@ -156,6 +156,10 @@ var lanes = [
 
 // these define the actual items that are displayed on the chart
 
+function ourDate(month, day, year) {
+  return new Date(year +","+ month +","+ day)
+}
+
 var items = [
 
   {id: 0, lane: 0, desc: 'Qin', start: yr(5), end: yr(205), class: 'item'},
@@ -179,7 +183,6 @@ var margin = {top: 20, right: 15, bottom: 15, left: 70}
   , mainHeight = height - miniHeight - 50;
 
 
-
 var x = d3.time.scale()
 
   .domain([d3.min(items, function(d) { return d.start - 100000; }),
@@ -194,10 +197,13 @@ var x1 = d3.time.scale().range([0, width]);
 
 var ext = d3.extent(lanes, function(d) { return d.id; });
 
-var y1 = d3.scale.linear().domain([ext[0], ext[1] + 1]).range([0, mainHeight]);
+var y1 = d3.scale.linear().domain([ext[0], ext[1] + 1]).range([0, mainHeight]); // domain is [lanes.min, lanes.max + 1]
 
 var y2 = d3.scale.linear().domain([ext[0], ext[1] + 1]).range([0, miniHeight]);
 
+
+// y1 is the scaling factor of the big swim lames
+// y2 is the scaling factor of the mini swim lanes
 
 
 var chart = d3.select('body')
@@ -266,6 +272,7 @@ main.append('g').selectAll('.laneLines')
 
   .attr('stroke', function(d) { return d.label === '' ? 'white' : 'lightgray' });
 
+// BETANYC1: STROKE AND FILL CAN BE RANDOMIZED OR CHOSEN BASED ON CATEGORY NAME
 
 
 main.append('g').selectAll('.laneText')
@@ -298,9 +305,9 @@ mini.append('g').selectAll('.laneLines')
 
   .attr('x1', 0)
 
-  .attr('y1', function(d) { return d3.round(y2(d.id)) + 0.5; })
+  .attr('y1', function(d) { return d3.round(y2(d.id)) + 0.5; }) // scaling the numb of lanes to the height of the big swim lane
 
-  .attr('x2', width)
+  .attr('x2', width) 
 
   .attr('y2', function(d) { return d3.round(y2(d.id)) + 0.5; })
 
@@ -338,6 +345,7 @@ var xDateAxis = d3.svg.axis()
 
 
 
+
 var x1DateAxis = d3.svg.axis()
 
   .scale(x1)
@@ -345,7 +353,7 @@ var x1DateAxis = d3.svg.axis()
   .orient('bottom');
 
 
-
+//poop
 main.append('g')
 
   .attr('transform', 'translate(0,' + mainHeight + ')')
