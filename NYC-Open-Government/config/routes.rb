@@ -1,13 +1,12 @@
 NYCOpenGovernment::Application.routes.draw do
 
-  get '/events/categories' => 'categories#destroy_link'
+  get '/events/categories' => 'eventcategories#delete'
   get '/events/categories/:category' => 'categories#show'
 
   resources :events do
     resources :comments
   end
-  
-end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -63,4 +62,5 @@ end
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
+  
+end

@@ -38,13 +38,6 @@ class CategoriesController < ApplicationController
     redirect_to category_path 
   end
 
-  def destroy_link
-    @event = Event.find(params[:event_id])
-    @category = Category.find(params[:category_id])
-    @event.categories.delete(@category)
-    redirect_to edit_event_path(@event)
-  end    
-
   def show
     @category = Category.find(params[:id])
   end

@@ -24,23 +24,22 @@
       <% end %>
       <%= f.link_to_add "Add another category", :categories %>
     </div>
-  
-  <% else %>
+  <% else%>
     <div class="field">
       <ul>
-      <% cats = @event.categories.collect{|cat|cat} %>
-      <% cats.each do |cat| %>
-        <li><%= cat.name %>
-        <%= link_to 'Destroy', 
-                :controller => 'categories',
-                :action => 'destroy_link', 
+        <% categories = @event.categories.collect{|cat|cat} %>
+        <% categories.each do |cat| %>
+          <li><%= cat.name %>
+              <%= link_to 'Destroy',
+                :controller => 'eventcategories',
+                :action => "delete", 
                 :event_id => @event.id, 
-                :category_id => cat.id %>
-        </li>
-      <% end %>
+                :id => cat.id, 
+                :method => :delete %>
+          </li>
+        <% end %>
       </ul>
     </div>
-  
   <% end %>
 
   <div class="field">

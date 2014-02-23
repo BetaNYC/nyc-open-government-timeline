@@ -1,7 +1,7 @@
 class EventValidator < ActiveModel::Validator
   def validate(my_event)
-    if my_event.categories.collect{|cat|cat.name}.include?("select one")
-      my_event.errors[:base] << "Please select a category."
+    if my_event.categories.collect{|cat|cat.name}.length == 0
+      my_event.errors[:base] << "Please select at least one category for this event"
     end
   end
 end
