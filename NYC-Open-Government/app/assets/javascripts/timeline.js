@@ -1,8 +1,11 @@
 d3.json('http://localhost:3000/categories.json', function(categories){
-  alert(categories.length)
   d3.json('http://localhost:3000/events.json', function(events){
-    alert(events.length)
 
+    var catLanes = [];
+    for (i=0; i<categories.length; i++) {
+      catLanes.push({id: categories[i].id, label: categories[i].name})
+    }
+    console.log(catLanes);
     var lanes = [
         {id: 0, label: 'Chinese'}, 
         {id: 1, label: 'Japanese'}, 
@@ -10,6 +13,8 @@ d3.json('http://localhost:3000/categories.json', function(categories){
         {id: 3, label: 'Poop'},
         ];
 
+        // console.log(categories);
+        // console.log(events);
 
 
         // items is an array of item objects that have the following properties
