@@ -4,6 +4,11 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @events.to_json(:include => :categories)}
+    end
   end
 
   def new

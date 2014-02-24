@@ -89,6 +89,10 @@ return date;
 
 // and what their names will be
 
+d3.json('http://localhost:3000/categories.json', function(data){
+  alert(data.length)
+});
+
 var lanes = [
 {id: 0, label: 'Chinese'}, 
 {id: 1, label: 'Japanese'}, 
