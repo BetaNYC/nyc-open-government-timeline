@@ -3,9 +3,13 @@ NYCOpenGovernment::Application.routes.draw do
   get '/events/categories' => 'eventcategories#delete'
   get '/events/categories/:category' => 'categories#show'
 
+  resources :categories
+
   resources :events do
     resources :comments
   end
+
+  get '/timeline' => 'pages#timeline'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
