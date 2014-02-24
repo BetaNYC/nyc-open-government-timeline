@@ -120,8 +120,17 @@ function ourDate(month, day, year) {
   return new Date(year +","+ month +","+ day);
 }
 
+function addSpace(date) {
+  day = date.getDay();
+  month = date.getMonth();
+  year = Number(date.getFullYear());
+  year += 5
+  return new Date(year, month, day)
+}
+
 var items = [
-{id: 0, lane: 1, desc: 'Qin', start: ourDate("03", "19", "1991"), end: ourDate("03", "19", "2001"), class: 'item'},
+{id: 0, lane: 1, desc: 'Qin', start: ourDate("03", "19", "1991"), end: ourDate("03", "19", "1992"), class: 'item'},
+{id: 0, lane: 1, desc: 'Qin', start: ourDate("03", "19", "1993"), end: ourDate("03", "19", "1994"), class: 'item'},
 {id: 1, lane: 2, desc: 'Jin', start: ourDate("03", "19", "2001"), end: ourDate("03", "19", "2013"), class: 'item'},
 {id: 2, lane: 3, desc: 'Jin', start: ourDate("05", "07", "2000"), end: ourDate("03", "19", "2007"), class: 'item'}
 ];  
