@@ -1,21 +1,36 @@
 d3.json('http://localhost:3000/categories.json', function(categories){
   d3.json('http://localhost:3000/events.json', function(events){
 
-    var catLanes = [];
-    for (i=0; i<categories.length; i++) {
-      catLanes.push({id: categories[i].id, label: categories[i].name})
+    function getCategories() {
+        var container = [];
+        for (i=0; i<categories.length; i++) {
+          catLanes.push({id: (categories[i].id-1), label: categories[i].name})
+        }
+        return container;
     }
+
+    var catLanes = getCategories();
+
+//{id: 1, lane: 0, desc: 'Qin', start: ourDate("03", "19", "1991"), end: ourDate("03", "19", "1997"), class: 'item'},
+    function getEvents() {
+        var container2 = []
+        for (i = 0; i < events.length; i++) {
+            if (item[i].categories) {
+                //search categories array for the item's cat
+            }
+
+        }
+    }
+
+    console.log(categories);
     console.log(catLanes);
-    var lanes = [
-        {id: 0, label: 'Chinese'}, 
-        {id: 1, label: 'Japanese'}, 
-        {id: 2, label: 'Korean'},
-        {id: 3, label: 'Poop'},
-        ];
 
-        // console.log(categories);
-        // console.log(events);
-
+    // var catLanes = [
+    //     {id: 0, label: 'Chinese'}, 
+    //     {id: 1, label: 'Japanese'}, 
+    //     {id: 2, label: 'Korean'},
+    //     {id: 3, label: 'Poop'},
+    //     ];
 
         // items is an array of item objects that have the following properties
 
@@ -48,10 +63,10 @@ d3.json('http://localhost:3000/categories.json', function(categories){
         }
 
         var items = [
-        {id: 0, lane: 1, desc: 'Qin', start: ourDate("03", "19", "1991"), end: ourDate("03", "19", "1992"), class: 'item'},
-        {id: 0, lane: 1, desc: 'Qin', start: ourDate("03", "19", "1993"), end: ourDate("03", "19", "1994"), class: 'item'},
-        {id: 1, lane: 2, desc: 'Jin', start: ourDate("03", "19", "2001"), end: ourDate("03", "19", "2013"), class: 'item'},
-        {id: 2, lane: 3, desc: 'Jin', start: ourDate("05", "07", "2000"), end: ourDate("03", "19", "2007"), class: 'item'}
+        {id: 1, lane: 0, desc: 'Qin', start: ourDate("03", "19", "1991"), end: ourDate("03", "19", "1997"), class: 'item'},
+        {id: 2, lane: 1, desc: 'Qin', start: ourDate("03", "19", "1993"), end: ourDate("03", "19", "1994"), class: 'item'},
+        {id: 3, lane: 4, desc: 'Jin', start: ourDate("03", "19", "2001"), end: ourDate("03", "19", "2013"), class: 'item'},
+        {id: 4, lane: 5, desc: 'Jin', start: ourDate("05", "07", "2000"), end: ourDate("03", "19", "2007"), class: 'item'}
         ];  
 
 
@@ -61,7 +76,7 @@ d3.json('http://localhost:3000/categories.json', function(categories){
         var margin = {top: 20, right: 15, bottom: 15, left: 70}
         , width = $(window).width() - margin.left - margin.right - 20
         , height = $(window).height() - margin.top - margin.bottom - 20
-        , miniHeight = lanes.length * 12 + 50
+        , miniHeight = catLanes.length * 0.1 + 10
         , mainHeight = height - miniHeight - 50;
 
 
@@ -74,15 +89,15 @@ d3.json('http://localhost:3000/categories.json', function(categories){
 
 
 
-        var ext = d3.extent(lanes, function(d) { return d.id; });
+        var ext = d3.extent(catLanes, function(d) { return d.id; });
 
-        var y1 = d3.scale.linear().domain([ext[0], ext[1] + 1]).range([0, mainHeight]); // domain is [lanes.min, lanes.max + 1]
+        var y1 = d3.scale.linear().domain([ext[0], ext[1] + 1]).range([0, mainHeight]); // domain is [catLanes.min, catLanes.max + 1]
 
         var y2 = d3.scale.linear().domain([ext[0], ext[1] + 1]).range([0, miniHeight]);
 
 
         // y1 is the scaling factor of the big swim lames
-        // y2 is the scaling factor of the mini swim lanes
+        // y2 is the scaling factor of the mini swim catLanes
 
 
         var chart = d3.select('body')
@@ -91,15 +106,11 @@ d3.json('http://localhost:3000/categories.json', function(categories){
         .attr('height', height + margin.top + margin.bottom)
         .attr('class', 'chart');
 
-
-
         chart.append('defs').append('clipPath')
         .attr('id', 'clip')
         .append('rect')
           .attr('width', width)
           .attr('height', mainHeight);
-
-
 
         var main = chart.append('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
@@ -107,42 +118,38 @@ d3.json('http://localhost:3000/categories.json', function(categories){
         .attr('height', mainHeight)
         .attr('class', 'main');
 
-
         var mini = chart.append('g')
         .attr('transform', 'translate(' + margin.left + ',' + (mainHeight + 60) + ')')
         .attr('width', width)
         .attr('height', miniHeight)
         .attr('class', 'mini');
 
-
-
-        // draw the lanes for the main chart
+        // draw the catLanes for the main chart
 
         main.append('g').selectAll('.laneLines')
-        .data(lanes)
+        .data(catLanes)
         .enter().append('line')
         .attr('x1', 0)
         .attr('y1', function(d) { return d3.round(y1(d.id));})
         .attr('x2', width)
         .attr('y2', function(d) { return d3.round(y1(d.id));})
-        .attr('stroke', function(d) { return 'blue' });
-
+        .attr('stroke', 'blue');
 
         // BETANYC lane colors
 
-        main.append("g").selectAll('.laneBackground')
-        .data(lanes)
-        .enter().append('rect')
-        .attr('width', width)
-        .attr('height', (mainHeight/lanes.length) - 10 )
-        .attr("y", function(d) { return d3.round(y1(d.id));})
+        // main.append("g").selectAll('.laneBackground')
+        // .data(catLanes)
+        // .enter().append('rect')
+        // .attr('width', width)
+        // .attr('height', (mainHeight/catLanes.length) - 10 )
+        // .attr("y", function(d) { return d3.round(y1(d.id));})
 
 
         // BETANYC1: STROKE AND FILL CAN BE RANDOMIZED OR CHOSEN BASED ON CATEGORY NAME
 
 
         main.append('g').selectAll('.laneText')
-        .data(lanes)
+        .data(catLanes)
         .enter().append('text')
         .text(function(d) { return d.label; })
         .attr('x', -10)
@@ -152,13 +159,13 @@ d3.json('http://localhost:3000/categories.json', function(categories){
         .attr('class', 'laneText');
 
 
-        // draw the lanes for the mini chart
+        // draw the catLanes for the mini chart
 
         mini.append('g').selectAll('.laneLines')
-        .data(lanes)
+        .data(catLanes)
         .enter().append('line')
         .attr('x1', 0)
-        .attr('y1', function(d) { return d3.round(y2(d.id)) + 0.5; }) // scaling the numb of lanes to the height of the big swim lane
+        .attr('y1', function(d) { return d3.round(y2(d.id)) + 0.5; }) // scaling the numb of catLanes to the height of the big swim lane
         .attr('x2', width) 
         .attr('y2', function(d) { return d3.round(y2(d.id)) + 0.5; })
         .attr('stroke', function(d) { return d.label === '' ? 'white' : 'lightgray' });
@@ -166,7 +173,7 @@ d3.json('http://localhost:3000/categories.json', function(categories){
 
 
         mini.append('g').selectAll('.laneText')
-        .data(lanes)
+        .data(catLanes)
         .enter().append('text')
         .text(function(d) { return d.label; })
         .attr('x', -10)
