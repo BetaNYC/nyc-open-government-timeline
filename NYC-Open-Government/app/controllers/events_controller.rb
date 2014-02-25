@@ -7,6 +7,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html
+      # to_json :include => :categories is a ActiveRecord function to include nested resources
       format.json { render :json => @events.to_json(:include => :categories)}
     end
   end
