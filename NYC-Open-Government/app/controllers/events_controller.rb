@@ -4,6 +4,11 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @events.to_json(:include => :categories)}
+    end
   end
 
   def new
@@ -12,6 +17,7 @@ class EventsController < ApplicationController
   end
 
   def create
+    # debugger
     @event = Event.new(clean_params(params_event))
     @event.categories << audit_categories(params_event)
     if @event.save
@@ -37,6 +43,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    debugger
     @event = Event.find(params[:id])
     @event.destroy
     redirect_to events_path 

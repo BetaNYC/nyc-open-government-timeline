@@ -12,6 +12,7 @@ class Event < ActiveRecord::Base
   has_many :category_events
   has_many :categories, :through => :category_events
   
+  validates :categories, :presence => true
   validates :date, :presence => true
   validates :name, :presence => true,  :length => { :maximum => 150, :minimum => 2, :message => "must be 2-150 characters in length"}
   validates :description, :presence => true, :length => { :maximum => 700, :minimum => 5, :message => "must be 5-700 characters in length"}
