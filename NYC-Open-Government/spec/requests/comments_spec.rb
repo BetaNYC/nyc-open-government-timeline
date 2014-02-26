@@ -9,11 +9,4 @@ describe "Comments" do
       expect(page).to have_content('Your handle')
     end  
   end
-
-  describe "Show" do
-    it "should have content 'Author'" do
-      visit '/events/1/comments/1'
-      expect(page).to have_content('Author')
-    end
-  end
 end

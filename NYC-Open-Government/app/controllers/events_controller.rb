@@ -54,6 +54,14 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def api_by_name
+    @event = query_by_name(Event.all, params[:name])
+
+    respond_to do |format|
+      format.json { render :json => @event }
+    end 
+  end
+
   private
     def params_event
       params.require(:event).permit(:name, :description, :date, :url, :status, categories_attributes: [:name])

@@ -3,7 +3,10 @@ NYCOpenGovernment::Application.routes.draw do
   get '/events/categories' => 'eventcategories#delete'
   get '/events/categories/:category' => 'categories#show'
 
-  resources :categories
+
+  resources :categories 
+  get '/api/categories/name=:name' => 'categories#api_by_name'
+  get '/api/events/name=:name' => 'events#api_by_name'
 
   resources :events do
     resources :comments
@@ -11,6 +14,7 @@ NYCOpenGovernment::Application.routes.draw do
 
   get '/timeline' => 'pages#timeline'
 
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
