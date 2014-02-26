@@ -5,6 +5,10 @@ NYCOpenGovernment::Application.routes.draw do
 
   get '/timeline' => 'pages#timeline'
   get '/events/format/outline' => 'pages#outline'
+  get '/about' => 'pages#about'
+  get '/contact' => 'pages#contact'
+  get '/database' => 'pages#database'
+  get '/' => 'pages#home'
 
   resources :categories
 
