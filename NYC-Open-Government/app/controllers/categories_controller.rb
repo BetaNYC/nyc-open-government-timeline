@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(params_event)
     if @category.save
-      redirect_to category_path
+      redirect_to categories_path
     else
       render "new"
     end
@@ -40,7 +40,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
-    redirect_to category_path 
+    redirect_to categories_path 
   end
 
   def show
