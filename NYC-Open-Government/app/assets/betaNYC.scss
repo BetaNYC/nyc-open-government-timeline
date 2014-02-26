@@ -1,0 +1,260 @@
+$CFAred: #cf1b41;
+$CFAblue: #399fd3;
+$CFAgrey: #939699;
+$CFAdarkgrey: #6D6E71;
+$BBdarkblue: #1c4587;
+ 
+$tinyspace: 2px;
+$smallspace: 5px;
+$mediumspace: 10px;
+$largespace: 20px;
+$hugespace: 40px;
+ 
+@mixin grey_box_shadow {
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 3px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 3px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 3px rgba(0, 0, 0, 0.05);
+}
+ 
+.rsvp {
+  font-family: "Arvo";
+  float: left;
+  text-align: center;
+  margin-right: $mediumspace;
+  .btn-red {
+    display: block;
+  }
+}
+ 
+.info {
+  margin-top: $mediumspace;
+  margin-bottom: $mediumspace;
+}
+ 
+.imgdiv {
+  background: image-url("cityhall.jpg");
+  background-size: cover;
+  height: 400px;
+}
+ 
+.date {
+  background: $BBdarkblue;
+  color: white;
+  padding: $largespace;
+  text-align: center;
+}
+ 
+.time {
+  font-family: "Arvo";
+  font-weight: 700;
+  color: $BBdarkblue;
+  font-size: 120%;
+}
+ 
+.partner {
+  margin: $mediumspace;
+}
+ 
+.day {
+  font-size: 300%;
+  font-weight: 700;
+}
+ 
+.month {
+  font-size: 200%;
+}
+ 
+.aphorism {
+  line-height: 1.25em;
+  font-size: 300%;
+  text-align: center;
+}
+ 
+.name, h1, h3 {
+  color: $BBdarkblue;
+  font-family: "Arvo";
+  font-weight: 700;
+}
+ 
+.name {
+  font-size: 300%;
+  display: inline-block;
+  &:hover{
+    background: none;
+    color: $CFAblue;
+  }
+  &:visited{
+    color: $BBdarkblue;
+  }
+}
+ 
+.logo {
+  margin-right: $mediumspace;
+  display: inline-block;
+  float: left;
+}
+ 
+.maininner {
+  padding: $largespace;
+  background: white;
+}
+ 
+.heroinner {
+  padding: $largespace;
+}
+ 
+.mainheader {
+  padding: $smallspace $mediumspace;
+  background: white;
+}
+ 
+.columninner {
+  padding: 0 $mediumspace $mediumspace $mediumspace;
+}
+ 
+ul {
+  margin: -$smallspace;
+}
+ 
+li {
+  padding: $largespace;
+  list-style: none;
+}
+ 
+.btn-white {
+  color: $BBdarkblue;
+  background: white;
+  border-radius: 5px;
+  padding: $mediumspace $largespace;
+  margin-bottom: $mediumspace;
+  &:hover{
+    background: $CFAblue;
+    color: white;
+    text-decoration: none;
+  }
+  &:visited {
+    color: $BBdarkblue;
+  }
+}
+ 
+.btn-blue {
+  color: white;
+  background: $CFAblue;
+  border-radius: 5px;
+  padding: $mediumspace $largespace;
+  margin-bottom: $mediumspace;
+  &:hover{
+    background: $CFAred;
+    color: $CFAblue;
+    text-decoration: none;
+  }
+  &:visited {
+    color: white;
+  }
+}
+ 
+.btn-red {
+  color: white;
+  background: $CFAred;
+  border-radius: 5px;
+  padding: $mediumspace $largespace;
+  &:hover{
+    background: $CFAblue;
+    color: white;
+    text-decoration: none;
+  }
+  &:visited {
+    color: white;
+  }
+}
+ 
+.action {
+  text-align: center;
+}
+ 
+.navbar {
+  margin-top: $largespace;
+}
+ 
+.navbar .nav,
+.navbar .nav > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+    *zoom:1; /* hasLayout ie7 trigger */
+    vertical-align: top;
+    font-family: "Ostrich sans";
+    font-size: 25px;
+    margin-left: $largespace;
+    margin-right: $largespace;
+}
+ 
+.navbar-inner {
+  text-align:center;
+  border: none;
+  padding: $smallspace;
+  background: white;
+}
+ 
+header {
+  text-align: right;
+}
+ 
+body {
+  background-image: image-url("bg_stripe.png");
+}
+ 
+.main {
+  @include grey_box_shadow;
+  margin-bottom: $largespace;
+  font-family: "Arvo";
+  background: white;
+}
+ 
+.blue {
+  background: $CFAblue;
+  color: white;
+}
+ 
+.red {
+  background: $CFAred;
+  color: $CFAblue;
+}
+ 
+.grey {
+  background: $CFAgrey;
+  color: white;
+}
+ 
+.highlight {
+  color: white;
+  font-size: 150%;
+}
+ 
+.unit-title {
+  font-family: "Arvo";
+  font-size: 150%;
+  font-weight: 700;
+  color: $CFAblue;
+  &:visited {
+    color: $CFAgrey;
+  }
+  &:hover {
+    background: none;
+    color: $CFAred;
+    text-decoration: none;
+  }
+}
+ 
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+ 
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}
