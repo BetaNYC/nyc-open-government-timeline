@@ -1,18 +1,46 @@
-<h1>Timeline</h1>
-<ul>
-<% @events.each do |event| %>
-    <%= event.name %>
-    <%= link_to 'Show', event_path(event) %>
-    <%= link_to 'Edit', edit_event_path(event) %>
-    <%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %>
-    <ul>
-      <li>Type of Event: <%= categories(event) %></li>
-      <li>Description: <%= event.description %></li>
-      <li>Status: <%= event.status %></li>
-      <li>Date: <%= event.date %></li>
-      <li>Website: <%= event.url %></li>
-    </ul>   
-  </li>
-<% end %>
-</ul>
+<h1>Table of Events</h1>
 <%= link_to 'Create Event', new_event_path %>
+<%= link_to 'View as an Outline', :controller => 'pages', :action => 'outline' %>
+<table>
+  <tr> 
+    <th>Name</th>
+    <th>Category</th>
+    <th>URL</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th>Date</th>
+    <th>Actions</th>
+  </tr>
+<% @events.each do |event| %> 
+  <tr>
+    <td>
+      <%= event.name %>
+    </td>
+    <td>
+      <%= categories(event) %>
+    </td>
+    <td>
+      <%= event.url %>
+    </td>
+    <td>
+      <%= event.description %>
+    </td>
+    <td>
+      <%= event.status %>
+    </td>
+    <td>
+      <%= event.date %>
+    </td>
+    <td>
+      <%= link_to 'View Event', event_path(event) %>
+    </td>
+    <td>
+      <%= link_to 'Edit', edit_event_path(event)%>
+    </td>
+    <td>
+      <%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+

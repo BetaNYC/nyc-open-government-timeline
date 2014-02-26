@@ -95,18 +95,9 @@ d3.json('http://localhost:3000/categories.json', function(categories){
           return new Date(year, month, day)
         }
 
-        // var items = [
-        // {id: 1, lane: 0, desc: 'Qin', start: ourDate("03", "19", "1991"), end: ourDate("03", "19", "1997"), class: 'item'},
-        // {id: 2, lane: 1, desc: 'Qin', start: ourDate("03", "19", "1993"), end: ourDate("03", "19", "1994"), class: 'item'},
-        // {id: 3, lane: 4, desc: 'Jin', start: ourDate("03", "19", "2001"), end: ourDate("03", "19", "2013"), class: 'item'},
-        // {id: 4, lane: 5, desc: 'Jin', start: ourDate("05", "07", "2000"), end: ourDate("03", "19", "2007"), class: 'item'}
-        // ];  
-
-
-
         // define the chart extents
 
-        var margin = {top: 20, right: 15, bottom: 15, left: 70}
+        var margin = {top: 20, right: 15, bottom: 15, left: 130}
         , width = $(window).width() - margin.left - margin.right - 20
         , height = $(window).height() - margin.top - margin.bottom - 20
         , miniHeight = lanes.length * 0.1 + 10
@@ -214,7 +205,8 @@ d3.json('http://localhost:3000/categories.json', function(categories){
         .attr('y', function(d) { return y2(d.id + .5); })
         .attr('dy', '0.5ex')
         .attr('text-anchor', 'end')
-        .attr('class', 'laneText');
+        .attr('class', 'laneText')
+        .attr('display', 'none');
 
 
 
@@ -332,9 +324,21 @@ d3.json('http://localhost:3000/categories.json', function(categories){
           .attr('class', function(d) { return 'mainItem ' + d.class; })
           .attr('data-id', function(d) { return d.id });
 
+        // rects.on("click", function click(d) {
+        //   var d3This = d3.select(this);
+        //   var id = d3This.attr('data-id');
+        //   var labels = d3.selectAll('.itemLabel');
+        //   var label = labels.filter([data-id==15]);
+
+        //   // var label = labels.filter(function(d) {
+        //   //   return d.id === id;
+        //   // })
+
+        //   console.log(id);
+        //   console.log(label);
+        // });
 
         rects.exit().remove();
-
 
         // update the item labels
         labels = itemRects.selectAll('text')
@@ -347,8 +351,8 @@ d3.json('http://localhost:3000/categories.json', function(categories){
           .attr('y', function(d) { return y1(d.lane) + .4 * y1(1) + 6.5; })
           .attr('text-anchor', 'start')
           .attr('class', 'itemLabel')
-          .attr('data-id', function(d) { return d.id });
-
+          .attr('data-id', function(d) { return d.id })
+          .attr('display', 'none');
 
         labels.exit().remove();
 
