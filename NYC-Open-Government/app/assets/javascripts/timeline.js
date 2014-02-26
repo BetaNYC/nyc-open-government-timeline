@@ -133,7 +133,7 @@ d3.json('http://localhost:3000/categories.json', function(categories){
         // y2 is the scaling factor of the mini swim lanes
 
 
-        var chart = d3.select('body')
+        var chart = d3.select('.timeline')
         .append('svg:svg')
         .attr('width', width + margin.right + margin.left)
         .attr('height', height + margin.top + margin.bottom)

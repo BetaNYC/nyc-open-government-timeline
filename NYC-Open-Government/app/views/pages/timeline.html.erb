@@ -1,63 +1,65 @@
 <html>
   <head>
     <title>Swimlane using d3.js</title>
-    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  
-    <style>
+      <div class="timeline">
+      <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    
+      <style>
 
-    .chart {
-      shape-rendering: crispEdges;
-    }
+      .chart {
+        shape-rendering: crispEdges;
+      }
 
-    .laneBackground rect {
-      fill: hotpink;
-    }
+      .laneBackground rect {
+        fill: hotpink;
+      }
 
-    .mini text {
-      font: 9px sans-serif; 
-    }
-
-
-    .main text {
-      font: 12px sans-serif;  
-    }
+      .mini text {
+        font: 9px sans-serif; 
+      }
 
 
-    .month text {
-      text-anchor: start;
-    }
+      .main text {
+        font: 12px sans-serif;  
+      }
 
 
-    .todayLine {
-      stroke: blue;
-      stroke-width: 1.5;
-    }
+      .month text {
+        text-anchor: start;
+      }
 
 
-    .axis line, .axis path {
-      stroke: black;
-    }
+      .todayLine {
+        stroke: blue;
+        stroke-width: 1.5;
+      }
 
 
-    .miniItem {
-      stroke-width: 6;  
-    }
+      .axis line, .axis path {
+        stroke: black;
+      }
 
 
-    .item {
-      stroke: "gray";
-      fill: hotpink;
-
-    }
+      .miniItem {
+        stroke-width: 6;  
+      }
 
 
-    .brush .extent {
-      stroke: gray;
-      fill: yellow;
-      fill-opacity: .165;
-    }
-    </style>
+      .item {
+        stroke: "gray";
+        fill: hotpink;
+
+      }
+
+
+      .brush .extent {
+        stroke: gray;
+        fill: yellow;
+        fill-opacity: .165;
+      }
+      </style>
+    </div>
   </head>
   <body>
     <%= javascript_include_tag :customTimeline %>
