@@ -5,7 +5,6 @@ NYCOpenGovernment::Application.routes.draw do
 
   get '/timeline' => 'pages#timeline'
   get '/events/format/outline' => 'pages#outline'
-  get '/events/format/table' => 'events#index'
 
   resources :categories
 
