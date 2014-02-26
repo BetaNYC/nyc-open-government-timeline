@@ -1,5 +1,7 @@
 NYCOpenGovernment::Application.routes.draw do
 
+  root 'pages#timeline'
+
   get '/events/categories' => 'eventcategories#delete'
   get '/events/categories/:category' => 'categories#show'
 
