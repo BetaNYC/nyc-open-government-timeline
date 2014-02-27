@@ -5,7 +5,6 @@ NYCOpenGovernment::Application.routes.draw do
   get '/events/categories' => 'eventcategories#delete'
   get '/events/categories/:category' => 'categories#show'
 
-<<<<<<< HEAD:NYC-Open-Government/config/routes.rb
   get '/timeline' => 'pages#timeline'
   get '/events/format/outline' => 'pages#outline'
   get '/about' => 'pages#about'
@@ -13,26 +12,15 @@ NYCOpenGovernment::Application.routes.draw do
   get '/database' => 'pages#database'
   get '/api' => 'pages#api'
   get '/' => 'pages#home'
-
-  resources :categories
-=======
-
-  resources :categories 
   get '/api/categories/name=:name' => 'categories#api_by_name'
   get '/api/events/name=:name' => 'events#api_by_name'
->>>>>>> 8c57c38137cca6f6a405f228a70f88e089d15f1a:config/routes.rb
+
+  resources :categories 
 
   resources :events do
     resources :comments
   end
 
-<<<<<<< HEAD:NYC-Open-Government/config/routes.rb
-=======
-  get '/timeline' => 'pages#timeline'
-
-  
-
->>>>>>> 8c57c38137cca6f6a405f228a70f88e089d15f1a:config/routes.rb
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
