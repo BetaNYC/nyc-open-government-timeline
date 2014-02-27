@@ -1,7 +1,11 @@
-<h1> Editing comment for <%= @event.name %> </h1>
+<div class="container">
 
-<%= render 'form' %>
+  <h1> Editing comment for <%= @event.name %> </h1>
 
-<%= link_to 'Show', event_comment_path %>
-<%= link_to 'Back', event_comments_path %>
-<%= link_to 'Destroy', event_comments_path(@event, @comment), :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+  <%= render 'form' %>
+
+  <%= link_to 'Show', event_comment_path %>
+  <%= link_to 'Back', event_comments_path %>
+  <%= link_to 'Destroy', event_comments_path(@event, @comment), :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+
+</div>

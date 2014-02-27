@@ -1,48 +1,50 @@
-<h1>Table of Events Sorted by Date</h1>
-<%= link_to 'Create Event', new_event_path %>
-<%= link_to 'View as an Outline', :controller => 'pages', :action => 'outline' %>
+<div class="container">
+  <h1>Table of Events Sorted by Date</h1>
+  <%= link_to 'Create Event', new_event_path %>
+  <%= link_to 'View as an Outline', :controller => 'pages', :action => 'outline' %>
 
-<table>
-  <tr> 
-    <th>Name</th>
-    <th>Category</th>
-    <th>URL</th>
-    <th>Description</th>
-    <th>Status</th>
-    <th>Date</th>
-    <th>Actions</th>
-  </tr>
-<% @events.sort! { |a, b| a.date <=> b.date } %> 
-<% @events.each do |event| %> 
-  <tr>
-    <td>
-      <%= event.name %>
-    </td>
-    <td>
-      <%= categories(event) %>
-    </td>
-    <td>
-      <%= event.url %>
-    </td>
-    <td>
-      <%= event.description %>
-    </td>
-    <td>
-      <%= event.status %>
-    </td>
-    <td>
-      <%= event.date %>
-    </td>
-    <td>
-      <%= link_to 'View Event', event_path(event) %>
-    </td>
-    <td>
-      <%= link_to 'Edit', edit_event_path(event)%>
-    </td>
-    <td>
-      <%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %>
-    </td>
-  </tr>
-  <% end %>
-</table>
+  <table>
+    <tr> 
+      <th>Name</th>
+      <th>Category</th>
+      <th>URL</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </tr>
+  <% @events.sort! { |a, b| a.date <=> b.date } %> 
+  <% @events.each do |event| %> 
+    <tr>
+      <td>
+        <%= event.name %>
+      </td>
+      <td>
+        <%= categories(event) %>
+      </td>
+      <td>
+        <%= event.url %>
+      </td>
+      <td>
+        <%= event.description %>
+      </td>
+      <td>
+        <%= event.status %>
+      </td>
+      <td>
+        <%= event.date %>
+      </td>
+      <td>
+        <%= link_to 'View Event', event_path(event) %>
+      </td>
+      <td>
+        <%= link_to 'Edit', edit_event_path(event)%>
+      </td>
+      <td>
+        <%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
 
