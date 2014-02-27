@@ -48,6 +48,15 @@ class CategoriesController < ApplicationController
     @events = @category.events
   end
 
+  def api_by_name
+    @category = query_by_name(Category.all, params[:name])
+    
+    respond_to do |format|
+      format.json { render :json => @category}
+    end
+  end
+
+
   private
     def params_event
       params.require(:category).permit(:name)
