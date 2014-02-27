@@ -1,0 +1,32 @@
+<h1>Events for <%=@category.name%></h1>
+<table>
+  <tr> 
+    <th>Name</th>
+    <th>Description</th>
+    <th>URL</th>
+    <th>Status</th>
+    <th>Date</th>
+  </tr>
+<%  @events.each do |event| %> 
+  <tr>
+    <td>
+      <%= event.name %>
+    </td>
+    <td>
+      <%= event.description %>
+    </td>
+    <td>
+      <%= event.url %>
+    </td>
+    <td>
+      <%= event.status %>
+    </td>
+    <td>
+      <%= event.date %>
+    </td>
+    <td>
+      <%= link_to 'View Event', event_path(event) %>
+    </td>
+  </tr>
+  <% end %>
+</table>
