@@ -8,6 +8,7 @@ NYCOpenGovernment::Application.routes.draw do
   get '/about' => 'pages#about'
   get '/contact' => 'pages#contact'
   get '/database' => 'pages#database'
+  get '/api' => 'pages#api'
   get '/' => 'pages#home'
 
   resources :categories
