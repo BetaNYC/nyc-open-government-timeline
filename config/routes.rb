@@ -5,13 +5,14 @@ NYCOpenGovernment::Application.routes.draw do
   get '/events/categories' => 'eventcategories#delete'
   get '/events/categories/:category' => 'categories#show'
 
+  get '/home' => 'pages#home'
   get '/timeline' => 'pages#timeline'
   get '/events/format/outline' => 'pages#outline'
   get '/about' => 'pages#about'
   get '/contact' => 'pages#contact'
   get '/database' => 'pages#database'
+  
   get '/api' => 'pages#api'
-  get '/' => 'pages#home'
   get '/api/categories/name=:name' => 'categories#api_by_name'
   get '/api/events/name=:name' => 'events#api_by_name'
 
