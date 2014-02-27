@@ -1,5 +1,5 @@
-d3.json('http://betagovnyc.herokuapp.com/categories.json', function(categories){
-  d3.json('http://betagovnyc.herokuapp.com/events.json', function(events){
+d3.json('betagovnyc.herokuapp.com/categories.json', function(categories){
+  d3.json('betagovnyc.herokuapp.com/events.json', function(events){
 
     var lanes = getCategories(categories);
     var items = getEvents(events);
