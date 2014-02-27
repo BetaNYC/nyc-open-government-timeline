@@ -1,0 +1,131 @@
+body {
+  color: white;
+  background-color: black;
+}
+
+h1 {
+  color: lightblue;
+  text-shadow: 2px 2px 0 deepskyblue;
+  font-family: "Abril Fatface", serif;
+  font-size: 64px;
+}
+
+.back {
+  font-size: 32px;
+}
+
+.new {
+  float: right;
+}
+
+button {
+  background-color: lightblue;
+  padding: 20px;
+}
+
+.jumbo {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(255,255,255,0.3);
+  margin: 20px 0;
+}
+
+label {
+  padding: 10px;
+  margin: 20px;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+#search, select, input {
+  width: 500px;
+  color: black;
+  border: lightblue solid 2px;
+  padding: 10px;
+  margin: 20px;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+/* cats */
+
+.cat-container {
+  margin: auto;
+  width: 50%;
+}
+
+.cats {
+  list-style: none;
+  display: block;
+}
+
+.cat-pic {
+  margin: 20px 0 0 0;
+  width: 100%;
+}
+
+.thumbs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.thumbs li {
+  display: inline;
+  float: right;
+}
+
+.cat-thumb {
+  width: 100px;
+  margin: 10px;
+}
+
+.cat {
+  margin: 20px 0;
+}
+
+a {
+  color: lightblue;
+  font-weight: 800;
+}
+
+.info {
+  display: inline-block;
+  width: 300px;
+  padding: 20px;
+}
+
+/* sagan */
+#sagan {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+}
+
+/* spinning galaxy */
+@-moz-keyframes vortex {
+    from { -moz-transform:rotate(0deg); }
+    to   { -moz-transform:rotate(360deg); }
+}
+@-webkit-keyframes vortex {
+  from { -webkit-transform:rotate(0deg); }
+  to   { -webkit-transform:rotate(360deg); }
+}
+@keyframes vortex {
+  from { transform:rotate(0deg); }
+  to   { transform:rotate(360deg); }
+}
+
+.billions {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;
+  background: transparent url('../img/nebula.jpg') no-repeat 50% 50%;
+  -moz-animation: rotate 40s ease-in-out 0s infinite;
+  -webkit-animation: vortex 40s ease-in-out 0s infinite;
+  animation: vortex 40s ease-in-out 0s infinite ;
+}
+

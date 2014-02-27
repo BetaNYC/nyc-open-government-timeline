@@ -1,0 +1,19 @@
+<div class="cat-container">
+  <a href="#cats/" class="back"><< catList</a>
+  <img ng-src="{{mainImg}}.jpg" class="cat-pic"/> 
+  <ul class="thumbs">
+    <li ng-repeat="img in cat.images">
+      <img ng-src="{{img}}-thumb.jpg" class="cat-thumb" ng-click="setImage(img)"/>
+    </li>
+  </ul>
+  <div class="info">
+    <h1>{{cat.name}}</h1>
+    <p>{{cat.bio}}</p>
+    <ul>
+      <li>Color: {{cat.color}}</li>
+      <li>Personality: {{cat.personality}}</li>
+      <li>Planets Visited: {{cat.planets}}</li>
+    </ul>
+    <h2>Available for Hire? {{cat.available | checkmark}}
+  </div>
+</div>

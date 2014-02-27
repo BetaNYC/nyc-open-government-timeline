@@ -1,0 +1,38 @@
+<div class="container-fluid">
+      <div class="billions"></div>
+      <img id="sagan" src="img/sagan.png"/>
+      <a class="new" href="#/new">Register a New Space Cat</a>
+      <div class="jumbo">  
+        <h1>Intergalactic Space Cat Registry</h1>
+        <!-- add ng-model: var to your input to store user input -->
+        <input id="search" type="text" ng-model="query" />
+        <select ng-model="orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="-planets">Planets Visited</option>
+        </select>
+      </div>
+      <div class="container">
+        <ul class="cats">
+          <!-- add the attribute ng-repeat
+              the value is "resource in set"
+              this says make an li for every cat in the set cats --> 
+          <!-- use pipe filter: query to auto sort your cats -->
+          <li ng-repeat="cat in cats | filter:query | orderBy:orderProp" class="cat">
+            <a href="#/cats/{{cat.id}}">
+              <img ng-src="img/spacecats/{{cat.name}}-thumb.jpg"/>
+            </a>
+            <div class="info">
+              <a href="#/cats/{{cat.id}}">
+                <h3>{{cat.name}}</h3>
+              </a>
+              <p>{{cat.bio}}</p>
+              <ul>
+                <li>Color: {{cat.color}}</li>
+                <li>Personality: {{cat.personality}}</li>
+                <li>Planets Visited: {{cat.planets}}</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>

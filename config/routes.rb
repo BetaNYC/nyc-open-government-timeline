@@ -1,7 +1,9 @@
 NYCOpenGovernment::Application.routes.draw do
 
-  root 'pages#timeline'
+  # root 'pages#timeline'
 
+  get '/events-angular', :to => redirect('/app/index.html')
+  
   get '/events/categories' => 'eventcategories#delete'
   get '/events/categories/:category' => 'categories#show'
 

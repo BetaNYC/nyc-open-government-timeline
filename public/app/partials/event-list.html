@@ -1,0 +1,38 @@
+<!-- event-list.html -->
+
+
+<div class="container-fluid">
+
+  <div class="search">
+    <input id="search" type="text" ng-model="query" />
+    <select ng-model="orderProp">
+      <option value="name">Name</option>
+      <option value="date">Date</option>
+      <option value="category">Category</option>
+    </select>
+  </div>
+
+  <div class="container">
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>URL</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+      <tr ng-repeat="event in events | filter: query | orderBy:orderProp" data-id={{event.id}}>
+        <td>{{event.name}}</td>
+        <td>{{event.categories[0].name}}</td>
+        <td>{{event.url}}</td>
+        <td>{{event.description}}</td>
+        <td>{{event.status}}</td>
+        <td>{{event.date | date: 'short'}}</td>
+<!--    <td><a href="#/pickups/{{pickup.id}}"><button class="confirm-pickup-btn" hidden>Confirm Pickup</button></a></td>
+ -->  </tr>
+
+    </table>
+  </div>
+
+</div>
