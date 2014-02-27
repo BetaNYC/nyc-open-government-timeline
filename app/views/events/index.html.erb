@@ -16,13 +16,13 @@
 <% @events.each do |event| %> 
   <tr>
     <td>
-      <%= event.name %>
+      <a href="/events/<%=event.id%>"><%= event.name %></a>
     </td>
     <td>
       <%= categories(event) %>
     </td>
     <td>
-      <%= event.url %>
+      <a href="<%= event.url %>">Website</a>
     </td>
     <td>
       <%= event.description %>
