@@ -324,19 +324,16 @@ d3.json('http://localhost:3000/categories.json', function(categories){
           .attr('class', function(d) { return 'mainItem ' + d.class; })
           .attr('data-id', function(d) { return d.id });
 
-        // rects.on("click", function click(d) {
-        //   var d3This = d3.select(this);
-        //   var id = d3This.attr('data-id');
-        //   var labels = d3.selectAll('.itemLabel');
-        //   var label = labels.filter([data-id==15]);
 
-        //   // var label = labels.filter(function(d) {
-        //   //   return d.id === id;
-        //   // })
+        rects.on("click", function click(d) {
+          var id = d.id;
+          var label = labels.filter(function(d) {
+            return d.id === id;
+          })
+          console.log(id);
+          console.log(label.text());
+        });
 
-        //   console.log(id);
-        //   console.log(label);
-        // });
 
         rects.exit().remove();
 
