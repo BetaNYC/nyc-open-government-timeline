@@ -1,7 +1,9 @@
-<h1> Editing category <%= @category.name %> </h1>
+<div class="container">
+  <h1> Editing category <%= @category.name %> </h1>
 
-<%= render 'form' %>
+  <%= render 'form' %>
 
-<%= link_to 'Show', category_path %>
-<%= link_to 'Back', categories_path %>
-<%= link_to 'Destroy', @category, confirm: 'Are you sure?', method: :delete %>
+  <%= link_to 'Show', category_path %>
+  <%= link_to 'Back', categories_path %>
+  <%= link_to 'Destroy', @category, confirm: 'Are you sure?', method: :delete %>
+</div>

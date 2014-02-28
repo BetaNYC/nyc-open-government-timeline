@@ -1,6 +1,7 @@
-<h1>Table of Events Sorted by Date</h1>
-<%= link_to 'Create Event', new_event_path %>
-<%= link_to 'View as an Outline', :controller => 'pages', :action => 'outline' %>
+<div class="container">
+  <h1>Table of Events Sorted by Date</h1>
+  <%= link_to 'Create Event', new_event_path %>
+  <%= link_to 'View as an Outline', :controller => 'pages', :action => 'outline' %>
 
 <table>
   <tr> 
@@ -45,4 +46,3 @@
   </tr>
   <% end %>
 </table>
-
