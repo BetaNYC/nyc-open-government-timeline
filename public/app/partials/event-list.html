@@ -8,7 +8,7 @@
     <select ng-model="orderProp">
       <option value="name">Name</option>
       <option value="date">Date</option>
-      <option value="category">Category</option>
+      <option value="categories[0].name">Category</option>
     </select>
   </div>
 
@@ -16,7 +16,7 @@
       <tr>
         <th>Name</th>
         <th>Category</th>
-        <th>URL</th>
+        <th>Link</th>
         <th>Description</th>
         <th>Status</th>
         <th>Date</th>
@@ -24,10 +24,15 @@
       <tr ng-repeat="event in events | filter: query | orderBy:orderProp" data-id={{event.id}}>
         <td><a href="/events/{{event.id}}">{{event.name}}</a></td>
         <td>{{event.categories[0].name}}</td>
-        <td><a href="{{event.url}}">Website</a></td>
+        <td><a href="{{event.url}}">URL</a></td>
         <td>{{event.description}}</td>
         <td>{{event.status}}</td>
-        <td>{{event.date | date: 'short'}}</td>
+        <td>{{event.date | date: 'longDate'}}</td>
+        <td>
+          <form>
+            <button type="submit" ng-click="deleteEvent(event.id)">Delete</button>
+          </form>
+        </td>
 <!--    <td><a href="#/pickups/{{pickup.id}}"><button class="confirm-pickup-btn" hidden>Confirm Pickup</button></a></td>
  -->  </tr>
 

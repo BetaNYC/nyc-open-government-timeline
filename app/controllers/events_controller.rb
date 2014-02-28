@@ -18,7 +18,6 @@ class EventsController < ApplicationController
   end
 
   def create
-    # debugger
     @event = Event.new(clean_params(params_event))
     @event.categories << audit_categories(params_event)
     if @event.save
@@ -47,7 +46,8 @@ class EventsController < ApplicationController
     debugger
     @event = Event.find(params[:id])
     @event.destroy
-    redirect_to events_path 
+    # redirect_to events_path 
+    render nothing: true
   end
 
   def show
