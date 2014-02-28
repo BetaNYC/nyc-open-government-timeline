@@ -43,11 +43,13 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    debugger
     @event = Event.find(params[:id])
     @event.destroy
-    # redirect_to events_path 
-    render nothing: true
+    if params[:angular]
+      render nothing: true
+    else
+      redirect_to events_path 
+    end
   end
 
   def show
