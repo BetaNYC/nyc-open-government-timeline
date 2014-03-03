@@ -26,7 +26,8 @@ timelineApp.config(['$routeProvider',
         controller: 'CateogryListCtrl'
       }).
       otherwise({
-        redirectTo: '/events'
+        templateUrl: 'partials/404.html',
+        controller: 'CateogryListCtrl'
       });
   }]);
 
