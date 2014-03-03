@@ -1,5 +1,5 @@
-d3.json('http://localhost:3000/categories.json', function(categories){
-  d3.json('http://localhost:3000/events.json', function(events){
+d3.json('/categories.json', function(categories){
+  d3.json('/events.json', function(events){
 
     var lanes = getCategories(categories);
     var items = getEvents(events);
