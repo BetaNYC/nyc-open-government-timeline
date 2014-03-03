@@ -1,5 +1,3 @@
-d3.json('betagovnyc.herokuapp.com/categories.json', function(categories){
-  d3.json('betagovnyc.herokuapp.com/events.json', function(events){
 d3.json('/categories.json', function(categories){
   d3.json('/events.json', function(events){
 
@@ -271,7 +269,7 @@ d3.json('/categories.json', function(categories){
 
         var brush = d3.svg.brush()
         .x(x)
-        .extent([ourDate("03", "19", "2012"), ourDate("03", "19", "2014")])
+        .extent([ourDate("03", "19", "2013"), ourDate("03", "19", "2014")])
         .on("brush", display);
 
 
