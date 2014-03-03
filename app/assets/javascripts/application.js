@@ -16,3 +16,4 @@
 //= require bootstrap/js/bootstrap.min
 //= require_tree ./sitewide
 //= require timeline.js
+//= require barchart.js

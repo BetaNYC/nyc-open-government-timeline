@@ -5,9 +5,6 @@ d3.json('/categories.json', function(categories){
     var lanes = getCategories(categories);
     var items = getEvents(events);
 
-//create data
-var data = [4,8,15,16,23,42];
-
 //set dimensions for chart
 var width = 420,
     barHeight = 20;
