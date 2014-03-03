@@ -23,11 +23,11 @@ timelineApp.config(['$routeProvider',
       }).
       when('/categories', {
         templateUrl: 'partials/category-list.html',
-        controller: 'CateogryListCtrl'
+        controller: 'CategoryListCtrl'
       }).
       otherwise({
         templateUrl: 'partials/404.html',
-        controller: 'CateogryListCtrl'
+        controller: 'CategoryListCtrl'
       });
   }]);
 
