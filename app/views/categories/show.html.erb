@@ -17,13 +17,13 @@
         <%= event.description %>
       </td>
       <td>
-        <%= event.url %>
+        <a href=<%= event.url %>>URL</a>
       </td>
       <td>
         <%= event.status %>
       </td>
       <td>
-        <%= event.date %>
+        <%= event.date.month %>/<%= event.date.day %>/<%= event.date.year %>
       </td>
       <td>
         <%= link_to 'View Event', event_path(event) %>
