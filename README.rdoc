@@ -8,7 +8,9 @@ Running on:
 Configuation:
 * rake db:migrate
 * rails c
+------- in rails console ---------
 * Event.make_events
 * quit
 * rails s
+-------- in browser's url --------
 * localhost:3000/home
