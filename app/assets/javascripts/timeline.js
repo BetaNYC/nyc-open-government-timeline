@@ -330,8 +330,8 @@ d3.json('/categories.json', function(categories){
           var label = labels.filter(function(d) {
             return d.id === id;
           })
-          console.log(id);
-          console.log(label.text());
+          // console.log(id);
+          alert(label.text());
         });
 
 

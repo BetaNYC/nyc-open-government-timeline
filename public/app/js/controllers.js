@@ -4,7 +4,7 @@ var eventsControllers = angular.module('timelineControllers', []);
 
 timelineApp.controller('EventListCtrl', ['$scope','$http',
   function($scope, $http){
-    $http.get('/events.json').success(function(data) {
+    $http.get('http://localhost:3000/events.json').success(function(data) {
      $scope.events = data;
     });
 
@@ -15,12 +15,14 @@ timelineApp.controller('EventListCtrl', ['$scope','$http',
 
       $http.delete('/events/' + eventID, {
         params: {angular: true}}).success(function(response) {
-        $http.get('/events.json').success(function(data) {
+        $http.get('http://localhost:3000/events.json').success(function(data) {
           $scope.events = data;
         });
       })
     }
   }]);
+
+
 
 // spacecatControllers.controller('CatDetailCtrl', ['$scope', '$routeParams', '$http',
 //   function($scope, $routeParams, $http) {
