@@ -22,6 +22,8 @@ timelineApp.controller('EventListCtrl', ['$scope','$http',
     }
   }]);
 
+timeline
+
 
 
 // spacecatControllers.controller('CatDetailCtrl', ['$scope', '$routeParams', '$http',

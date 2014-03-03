@@ -21,6 +21,10 @@ timelineApp.config(['$routeProvider',
         templateUrl: 'partials/event-list.html',
         controller: 'EventListCtrl'
       }).
+      when('/categories', {
+        templateUrl: 'partials/category-list.html',
+        controller: 'CateogryListCtrl'
+      }).
       otherwise({
         redirectTo: '/events'
       });
