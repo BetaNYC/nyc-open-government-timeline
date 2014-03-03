@@ -1,28 +1,14 @@
-== README
+== NYC Open Government Timeline
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Running on:
+* Ruby 2.0.0
+* Rails 4.0.2
+* AngularJS 1.2.14
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Configuation:
+* rake db:migrate
+* rails c
+* Event.make_events
+* quit
+* rails s
+* localhost:3000/home
