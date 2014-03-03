@@ -1,8 +1,8 @@
 'use strict';
 
-var eventsControllers = angular.module('timelineControllers', []);
+var timelineControllers = angular.module('timelineControllers', []);
 
-timelineApp.controller('EventListCtrl', ['$scope','$http',
+timelineControllers.controller('EventListCtrl', ['$scope','$http',
   function($scope, $http){
     $http.get('/events.json').success(function(data) {
      $scope.events = data;
@@ -22,7 +22,7 @@ timelineApp.controller('EventListCtrl', ['$scope','$http',
     }
   }]);
 
-timelineApp.controller('CategoryListCtrl', ['$scope', '$http',
+timelineControllers.controller('CategoryListCtrl', ['$scope', '$http',
   function($scope, $http) {
     $http.get('/categories.json').success(function(data) {
       $scope.categories = data;
