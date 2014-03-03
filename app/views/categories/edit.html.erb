@@ -3,7 +3,43 @@
 
   <%= render 'form' %>
 
-  <%= link_to 'Show', category_path %>
-  <%= link_to 'Back', categories_path %>
+  <br>
+  <br>
+  <%= link_to 'Back', categories_path %> |
   <%= link_to 'Destroy', @category, confirm: 'Are you sure?', method: :delete %>
+
+<div class="container">
+
+<h1 class="center">Events for <%=@category.name%></h1>
+  <table>
+    <tr> 
+      <th>Name</th>
+      <th>Description</th>
+      <th>URL</th>
+      <th>Status</th>
+      <th>Date</th>
+    </tr>
+  <%  @category.events.each do |event| %> 
+    <tr>
+      <td>
+        <%= event.name %>
+      </td>
+      <td>
+        <%= event.description %>
+      </td>
+      <td>
+        <a href=<%= event.url %>>URL</a>
+      </td>
+      <td>
+        <%= event.status %>
+      </td>
+      <td>
+        <%= event.date.month %>/<%= event.date.day %>/<%= event.date.year %>
+      </td>
+      <td>
+        <%= link_to 'View Event', event_path(event) %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
 </div>
