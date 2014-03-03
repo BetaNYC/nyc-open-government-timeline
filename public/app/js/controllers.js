@@ -22,6 +22,8 @@ timelineApp.controller('EventListCtrl', ['$scope','$http',
     }
   }]);
 
+
+
 // spacecatControllers.controller('CatDetailCtrl', ['$scope', '$routeParams', '$http',
 //   function($scope, $routeParams, $http) {
 //     $http.get("cats/cats-" + $routeParams.catId + '.json').success(function(data) {

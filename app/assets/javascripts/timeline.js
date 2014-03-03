@@ -1,5 +1,7 @@
 d3.json('betagovnyc.herokuapp.com/categories.json', function(categories){
   d3.json('betagovnyc.herokuapp.com/events.json', function(events){
+d3.json('/categories.json', function(categories){
+  d3.json('/events.json', function(events){
 
     var lanes = getCategories(categories);
     var items = getEvents(events);
@@ -269,7 +271,7 @@ d3.json('betagovnyc.herokuapp.com/categories.json', function(categories){
 
         var brush = d3.svg.brush()
         .x(x)
-        .extent([ourDate("03", "19", "2001"), ourDate("03", "19", "2013")])
+        .extent([ourDate("03", "19", "2012"), ourDate("03", "19", "2014")])
         .on("brush", display);
 
 
@@ -324,19 +326,16 @@ d3.json('betagovnyc.herokuapp.com/categories.json', function(categories){
           .attr('class', function(d) { return 'mainItem ' + d.class; })
           .attr('data-id', function(d) { return d.id });
 
-        // rects.on("click", function click(d) {
-        //   var d3This = d3.select(this);
-        //   var id = d3This.attr('data-id');
-        //   var labels = d3.selectAll('.itemLabel');
-        //   var label = labels.filter([data-id==15]);
 
-        //   // var label = labels.filter(function(d) {
-        //   //   return d.id === id;
-        //   // })
+        rects.on("click", function click(d) {
+          var id = d.id;
+          var label = labels.filter(function(d) {
+            return d.id === id;
+          })
+          // console.log(id);
+          alert(label.text());
+        });
 
-        //   console.log(id);
-        //   console.log(label);
-        // });
 
         rects.exit().remove();
 

@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require d3.min.js
 //= require bootstrap/js/bootstrap.min
 //= require_tree ./sitewide
+//= require timeline.js
