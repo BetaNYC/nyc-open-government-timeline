@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => @categories }
+      format.json { render :json => @categories.to_json(:include => :events) }
     end
   end
 
