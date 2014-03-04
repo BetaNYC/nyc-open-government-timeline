@@ -15,7 +15,16 @@ $hugespace: 40px;
      -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 3px rgba(0, 0, 0, 0.05);
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 3px rgba(0, 0, 0, 0.05);
 }
- 
+
+
+// Timeline Page CSS
+
+.item {
+  transition-property: all;
+  transition-duration: 500ms;
+  transition-timing-function: ease-in-out;
+}
+
 .rsvp {
   font-family: "Arvo";
   float: left;

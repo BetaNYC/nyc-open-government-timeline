@@ -99,7 +99,7 @@ d3.json('/categories.json', function(categories){
 
         var margin = {top: 20, right: 15, bottom: 15, left: 130}
         , width = $(window).width() - margin.left - margin.right - 20
-        , height = $(window).height() - margin.top - margin.bottom - 20
+        , height = $(window).height() - margin.top - margin.bottom - 150
         , miniHeight = lanes.length * 0.1 + 10
         , mainHeight = height - miniHeight - 50;
 
@@ -324,15 +324,45 @@ d3.json('/categories.json', function(categories){
           .attr('class', function(d) { return 'mainItem ' + d.class; })
           .attr('data-id', function(d) { return d.id });
 
-
         rects.on("click", function click(d) {
           var id = d.id;
           var label = labels.filter(function(d) {
             return d.id === id;
           })
-          // console.log(id);
-          alert(label.text());
+
+          d3This = d3.select(this);
+
+          $windowHeight = $(window).height();
+          $windowWidth = $(window).width();
+
+          $popUp = $("<div class='pop-up'></div>");
+          $('body').append($popUp);
+          $popUp.load("/events/" + id);
+          setTimeout(function() {
+            $('.pop-up .navbar-wrapper').remove()
+            $popUp.prepend("<button id='close'>X</button>")
+          }, 100)
+          $popUp.css("right", $windowWidth/2 - $popUp.width()/2 );
+          $popUp.css("top", $windowHeight/2 - $popUp.height()/2 );
         });
+
+        $('body').on("click", "#close", function() {
+          var $this = $(this);
+          $this.parent().remove();
+        })
+          // rects.append('rect')
+          //   .attr('x', d3This.attr("x"))
+          //   .attr('y', d3This.attr("y"))
+          //   .attr('width', d3This.attr("width"))
+          //   .attr('height', d3This.attr("height"))
+          //   .attr('class', d3This.attr("class"))
+          //   .attr('data-id', d3This.attr("data-id"));
+
+          // d3This
+          // .transition()
+          //   .attr("height", "200");
+          
+       
 
 
         rects.exit().remove();
