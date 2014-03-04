@@ -1,7 +1,11 @@
 d3.json('/events.json', function(events){
   var data = getEvents(events);
   var twoDArray = makeTwoDArray(data);
+  var sortedByFirst = sortArraysByFirst(twoDArray);
+  var sortedBySecond = sortArraysBySecond(twoDArray);
   var range = getTimeRange(twoDArray);
+  var width = 800;
+  var height = 800;
 
   function makeTwoDArray(events) {
     var array = [];
@@ -13,8 +17,19 @@ d3.json('/events.json', function(events){
     while (array.length > 0) {
       arrays.push(array.splice(0, 2));
     }
+    return sortArraysByFirst(arrays);
+  }
+
+  function sortArraysbyFirst(arrays) {
     arrays.sort(function (a, b) {
       return a[0] - b[0];
+    });
+    return arrays;
+  }
+
+  function sortArraysbySecond(arrays) {
+    arrays.sort(function (b, a) {
+      return b[0] - a[0];
     });
     return arrays;
   }
