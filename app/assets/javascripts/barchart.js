@@ -1,40 +1,61 @@
 d3.json('/events.json', function(events){
-  var dataHash = getEvents(events);
+  //reads json served from rails
+  var preDataHash = getEvents(events);
+  //makes json objects into nested array with year and count of events
+  var twoDArray = makeTwoDArray(preDataHash);
+  //sorts arrays by year
+  var sortedByYear = sortArraysByYear(twoDArray);
+  //sorts arrays by number of events
+  var width = 800;
+  var height = 800;
 
-   //  var ourYears = {"1999":2, "2000":4, "2005":3, "2003":20};
+  //gets min year in arrays
+  var xMin = sortedByYear[0][0];
+  //gets max year in arrays
+  var xMax = sortedByYear[(sortedByValue.length-1)][0];
+  //get the difference between min and max years
+  var range = xMax - xMin;
+  //sets y min to zero
 
-   // How would we turn this into an array sorted by year like this:
-   //     var sortedYears = [["1999",2], ["2000",4], ["2003",20], ["2005", 3]];
+  var sortedByValue = sortArraysByValue(twoDArray);
+  //sets width and height of barchart
+  var yMin = 0;
+  //sets y max to max number of events
+  var yMax = sortedByValue[(sortedByValue.length-1)][1] + 1;
+  
+  //add zero values to years not present in preDataHash
+  var dataHash = addMissingYears(preDataHash, xMin, xMax);
+  //makes json objects into nested array with year and count of events
+  var data = makeTwoDArray(dataHash);
 
-   // So that we can make variables
-   //     var largestYear = sortedYears[-1][0];
-   //     var smallestYear = sortedYears[0][0];
-
-   // So we can find the difference 
-   //     var difference = largestYear - smallestYear;    
-
-function make2DArray(events) {
-  var hash = {
-    "1999": 2,
-    "2000": 4,
-    "2005": 3,
-    "2003": 20
-  };
-  var array = [];
-  var arrays = [];
-  for (var i in hash) {
-    array.push(i);
-    array.push(hash[i]);
+  function makeTwoDArray(events) {
+    var array = [];
+    var arrays = [];
+    for (var i in events) {
+      array.push(i);
+      array.push(events[i]);
+    }
+    while (array.length > 0) {
+      arrays.push(array.splice(0, 2));
+    }
+    return sortArraysByFirst(arrays);
   }
-  while (array.length > 0) {
-    arrays.push(array.splice(0, 2));
-  }
-  arrays.sort(function (a, b) {
-    return a[0] - b[0];
-  });
-  return arrays;
-}
 
+  function adddatapoints
+
+  function sortArraysbyYear(arrays) {
+    arrays.sort(function (a, b) {
+      return a[0] - b[0];
+    });
+    return arrays;
+  }
+
+  function sortArraysbyValue(arrays) {
+    arrays.sort(function (b, a) {
+      return b[0] - a[0];
+    });
+    return arrays;
+  }
 
   function getEvents(events) {
     var container = {};
@@ -48,18 +69,28 @@ function make2DArray(events) {
         var ourYear = ourDate.year;
         // var ourYear = ourDate.substr(0,4)
         if (ourYear in container) {
+          container[ourYear] = 1;
+        } else {
           var num = container[ourYear];
           container[ourYear] = num += 1;
-        } else {
-          container[ourYear] = 1;
         }
       }
     }
     return container;
   }
+
+  function addMissingYears(data, xMin, xMax) {
+    while (xMin < xMax) {
+      if !(xMin in data) {
+        data[xMin] = 0;
+      }
+      xMin += 1;
+    }
+    return data;
+  }
     
   var height = 800,
-    barWidth = (800/data.length);
+    barWidth = (800/range);
 
   var linearScale = d3.scale.linear()
     .domain([0, d3.max(data)])
