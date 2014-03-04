@@ -24,10 +24,53 @@ d3.json('/events.json', function (events) {
   var dataHash = addMissingYears(preDataHash, xMin, xMax);
   //makes json objects into nested array with year and count of events
   var oneLastThingData = makeTwoDArray(dataHash);
-  
+
   // make array with just the values of each year
   // [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 3, 2, 0, 1, 2, 0, 1, 11, 4, 4, 10, 21] 
-  var data = flattenArray(oneLastThingData);
+  var domain = flattenArray(oneLastThingData, 0);
+  var range = flattenArray(oneLastThingData, 1);
+  console.log(domain);
+  console.log(range);
+  var data = d3.scale.ordinal()
+    .domain(domain)
+    .range(range);
+
+  // SVG D3 Begins ###################################################################################
+
+  var width = 800,
+      height = 600;
+
+  var y = d3.scale.linear()
+      .range([height, 0]);
+
+  var chart = d3.select(".barchart")
+      .attr("width", width)
+      .attr("height", height);
+
+  var barWidth = width / data.length;
+
+  var bar = chart.selectAll("g")
+      .data(data)
+    .enter().append("g")
+      .attr("transform", function(d, i) { return "translate(" + i * barWidth + ",0)"; });
+
+  bar.append("rect")
+      .attr("y", function(d) { return y(d.value); })
+      .attr("height", function(d) { return height - y(d.value); })
+      .attr("width", barWidth - 1);
+
+  bar.append("text")
+      .attr("x", barWidth / 2)
+      .attr("y", function(d) { return y(d.value) + 3; })
+      .attr("dy", ".75em")
+      .text(function(d) { return d.value; });
+
+  function type(d) {
+    d.value = +d.value; // coerce to number
+    return d;
+  }
+
+ // Functions for data begin ###################################################################################
 
   function sortArraysByYear(arrays) {
     arrays.sort(function (a, b) {
@@ -88,42 +131,14 @@ d3.json('/events.json', function (events) {
     return data;
   }
 
-  function flattenArray(data) {
+  function flattenArray(data, index) {
     var array = [];
     var counter = 0;
     while (counter < data.length) {
-      array.push(data[counter][1]);
+      array.push(data[counter][index]);
       counter += 1;
     }
     return array;
   }
-
-  // SVG D3 Begins ###################################################################################
-
-  var width = 800,
-      barHeight = 10;
-
-  var x = d3.scale.linear()
-      .domain([0, d3.max(data)])
-      .range([0, width]);
-
-  var chart = d3.select(".barchart")
-      .attr("width", width)
-      .attr("height", barHeight * data.length);
-
-  var bar = chart.selectAll("g")
-      .data(data)
-      .enter().append("g")
-      .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
-
-  bar.append("rect")
-      .attr("width", x)
-      .attr("height", barHeight - 1);
-
-  bar.append("text")
-      .attr("x", function(d) { return x(d) - 3; })
-      .attr("y", barHeight / 2)
-      .attr("dy", ".35em")
-      .text(function(d) { return d; });
 
 });
