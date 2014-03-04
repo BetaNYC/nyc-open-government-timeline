@@ -2,12 +2,6 @@ d3.json('/events.json', function (events) {
   // reads json served from rails
   // {"2000":3, "2001":4, "1999":1}
   var preDataHash = getEvents(events);
-  console.log("preDataHash");
-  console.log(preDataHash);
-
-  // set width and height
-  var width = 800;
-  var height = 800;
 
   //makes json objects into nested array with year and count of events
   // [ [ '1999', 1 ], [ '2000', 3 ], [ '2001', 4 ] ]
@@ -22,8 +16,6 @@ d3.json('/events.json', function (events) {
 
   //sorts arrays by number of events
   var sortedByValue = sortArraysByValue(sortedByYear);
-  console.log("sortedByValue");
-  console.log(sortedByValue);
   //sets width and height of barchart
   var yMin = 0;
   //sets y max to max number of events
@@ -31,12 +23,10 @@ d3.json('/events.json', function (events) {
 
   //add zero values to years not present in preDataHash
   var dataHash = addMissingYears(preDataHash, xMin, xMax);
-  console.log("dataHash");
-  console.log(dataHash);
   //makes json objects into nested array with year and count of events
-  var data = makeTwoDArray(dataHash);
-  console.log("data");
-  console.log(data);
+  var oneLastThingData = makeTwoDArray(dataHash);
+  // make array with just the values of each year
+  var data = flattenArray(oneLastThingData);
 
   function sortArraysByYear(arrays) {
     arrays.sort(function (a, b) {
@@ -97,44 +87,57 @@ d3.json('/events.json', function (events) {
     return data;
   }
 
-});
+  function flattenArray(data) {
+    var array = [];
+    var counter = 0;
+    while (counter < data.length) {
+      array.push(data[counter][1]);
+      counter += 1;
+    }
+    return array;
+  }
 
-  // var height = 800,
-  //   barWidth = (800/range);
+  //set dimensions for chart
+  var width = 420,
+    barHeight = 20;
 
-  // var linearScale = d3.scale.linear()
-  //   .domain([0, d3.max(data)])
-  //   .range([0, width]);
+  //create linear scale 
+  var linearScale = d3.scale.linear()
+    .domain([0, d3.max(data)])
+    .range([0, width]);
 
-  // var chart = d3.select(".barchart")
-  //   .attr("width", width)
-  //   .attr("height", barHeight );
+  //select chart and set it to the dimensions
+  var chart = d3.select(".barchart")
+    .attr("width", width)
+    .attr("height", barHeight * data.length);
 
   //select elements and bind data to them
   // bar will be a rect and text
-  // var barUpdate = chart.selectAll("g")
-  //   .data(data);
+  var barUpdate = chart.selectAll("g")
+    .data(data);
 
-  // //since there are no bars, all exist in enter
-  // //add them to the DOM
-  // barUpdate.enter().append("g")
-  //   .attr("transform", function(d){
-  //     return "translate(0," + year - 1975 * barHeight + ")";
-  //     //"transform: translate(0, 40)"
-  //   });
+  //since there are no bars, all exist in enter
+  //add them to the DOM
+  barUpdate.enter().append("g")
+    .attr("transform", function (d, i) {
+      return "translate(0," + i * barHeight + ")";
+      //"transform: translate(0, 40)"
+    });
 
-  // //add the shape so we can see it!
-  // barUpdate.append("rect")
-  //   .attr("width", linearScale)
-  //   .attr("height", barHeight - 3);
+  //add the shape so we can see it!
+  barUpdate.append("rect")
+    .attr("width", linearScale)
+    .attr("height", barHeight - 3);
 
-  // //add the text to explain it
-  // barUpdate.append("text")
-  //   .attr("x", function(d){
-  //     return linearScale(d - 1);
-  //   })
-  //   .attr("y", barHeight / 2)
-  //   .attr("dy", ".35em")
-  //   .text(function(d){
-  //     return d;
-  //   });
+  //add the text to explain it
+  barUpdate.append("text")
+    .attr("x", function (d) {
+      return linearScale(d - 1);
+    })
+    .attr("y", barHeight / 2)
+    .attr("dy", ".35em")
+    .text(function (d) {
+      return d;
+    });
+
+});
