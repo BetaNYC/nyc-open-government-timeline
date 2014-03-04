@@ -1,11 +1,12 @@
 d3.json('/events.json', function(events){
   var data = getEvents(events);
   var twoDArray = makeTwoDArray(data);
-  var sortedByFirst = sortArraysByFirst(twoDArray);
-  var sortedBySecond = sortArraysBySecond(twoDArray);
+  var sortedByYear = sortArraysByYear(twoDArray);
+  var sortedByValue = sortArraysByValue(twoDArray);
   var range = getTimeRange(twoDArray);
   var width = 800;
   var height = 800;
+  var x1 = sortedBySecond
 
   function makeTwoDArray(events) {
     var array = [];
@@ -20,14 +21,14 @@ d3.json('/events.json', function(events){
     return sortArraysByFirst(arrays);
   }
 
-  function sortArraysbyFirst(arrays) {
+  function sortArraysbyYear(arrays) {
     arrays.sort(function (a, b) {
       return a[0] - b[0];
     });
     return arrays;
   }
 
-  function sortArraysbySecond(arrays) {
+  function sortArraysbyValue(arrays) {
     arrays.sort(function (b, a) {
       return b[0] - a[0];
     });
