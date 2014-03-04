@@ -1,12 +1,14 @@
 d3.json('/events.json', function(events){
-  var dataHash = getEvents(events);
+  var data = getEvents(events);
+  var twoDArray = makeTwoDArray(data);
+  var range = getTimeRange(twoDArray);
 
-  function make2DArray(events) {
+  function makeTwoDArray(events) {
     var array = [];
     var arrays = [];
-    for (var i in hash) {
+    for (var i in events) {
       array.push(i);
-      array.push(hash[i]);
+      array.push(events[i]);
     }
     while (array.length > 0) {
       arrays.push(array.splice(0, 2));
@@ -17,8 +19,10 @@ d3.json('/events.json', function(events){
     return arrays;
   }
 
+//range is number of potential bars i.e., num of years on x axis
   function getTimeRange(arrays) {
-    arrays[arrays.length-1][0] - arrays[0][0];
+    var range = arrays[arrays.length-1][0] - arrays[0][0];
+    return range;
   }
 
   function getEvents(events) {
@@ -32,7 +36,6 @@ d3.json('/events.json', function(events){
         var ourDate = new Date(ourEvent.date);
         var ourYear = ourDate.year;
         // var ourYear = ourDate.substr(0,4)
-        debugger
         if (container[ourYear] == undefined) {
           container[ourYear] = 1;
         } else {
@@ -45,7 +48,7 @@ d3.json('/events.json', function(events){
   }
     
   var height = 800,
-    barWidth = (800/data.length);
+    barWidth = (800/range);
 
   var linearScale = d3.scale.linear()
     .domain([0, d3.max(data)])
