@@ -1,10 +1,10 @@
 d3.json('/events.json', function (events) {
   // reads json served from rails
-  // {"2000":3, "2001":4, "1999":1}
   var preDataHash = getEvents(events);
+  // preDataHash = {"2000":3, "2001":4, "1999":1}
 
   //makes json objects into nested array with year and count of events
-  // [ [ '1999', 1 ], [ '2000', 3 ], [ '2001', 4 ] ]
+  // sortedByYear = [ [ '1999', 1 ], [ '2000', 3 ], [ '2001', 4 ] ]
   var sortedByYear = makeTwoDArray(preDataHash);
   //gets min year in arrays
   var xMin = sortedByYear[0][0];
@@ -24,13 +24,13 @@ d3.json('/events.json', function (events) {
   var dataHash = addMissingYears(preDataHash, xMin, xMax);
   //makes json objects into nested array with year and count of events
   var oneLastThingData = makeTwoDArray(dataHash);
-
   // make array with just the values of each year
-  // [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 3, 2, 0, 1, 2, 0, 1, 11, 4, 4, 10, 21] 
+
   var domain = flattenArray(oneLastThingData, 0);
   var range = flattenArray(oneLastThingData, 1);
-  console.log(domain);
-  console.log(range);
+  // domain = ["1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013"]
+  // range = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 3, 2, 0, 1, 2, 0, 1, 11, 4, 4, 10, 21] 
+
   var data = d3.scale.ordinal()
     .domain(domain)
     .range(range);
