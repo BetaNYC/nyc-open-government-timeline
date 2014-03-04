@@ -1,12 +1,32 @@
 d3.json('/events.json', function(events){
-  var data = getEvents(events);
-  var twoDArray = makeTwoDArray(data);
+  //reads json served from rails
+  var preDataHash = getEvents(events);
+  //makes json objects into nested array with year and count of events
+  var twoDArray = makeTwoDArray(preDataHash);
+  //sorts arrays by year
   var sortedByYear = sortArraysByYear(twoDArray);
-  var sortedByValue = sortArraysByValue(twoDArray);
-  var range = getTimeRange(twoDArray);
+  //sorts arrays by number of events
   var width = 800;
   var height = 800;
-  var x1 = sortedBySecond
+
+  //gets min year in arrays
+  var xMin = sortedByYear[0][0];
+  //gets max year in arrays
+  var xMax = sortedByYear[(sortedByValue.length-1)][0];
+  //get the difference between min and max years
+  var range = xMax - xMin;
+  //sets y min to zero
+
+  var sortedByValue = sortArraysByValue(twoDArray);
+  //sets width and height of barchart
+  var yMin = 0;
+  //sets y max to max number of events
+  var yMax = sortedByValue[(sortedByValue.length-1)][1] + 1;
+  
+  //add zero values to years not present in preDataHash
+  var dataHash = addMissingYears(preDataHash, xMin, xMax);
+  //makes json objects into nested array with year and count of events
+  var data = makeTwoDArray(dataHash);
 
   function makeTwoDArray(events) {
     var array = [];
@@ -20,6 +40,8 @@ d3.json('/events.json', function(events){
     }
     return sortArraysByFirst(arrays);
   }
+
+  function adddatapoints
 
   function sortArraysbyYear(arrays) {
     arrays.sort(function (a, b) {
@@ -35,12 +57,6 @@ d3.json('/events.json', function(events){
     return arrays;
   }
 
-//range is number of potential bars i.e., num of years on x axis
-  function getTimeRange(arrays) {
-    var range = arrays[arrays.length-1][0] - arrays[0][0];
-    return range;
-  }
-
   function getEvents(events) {
     var container = {};
     var eventCounter = 0;
@@ -52,7 +68,7 @@ d3.json('/events.json', function(events){
         var ourDate = new Date(ourEvent.date);
         var ourYear = ourDate.year;
         // var ourYear = ourDate.substr(0,4)
-        if (container[ourYear] == undefined) {
+        if (ourYear in container) {
           container[ourYear] = 1;
         } else {
           var num = container[ourYear];
@@ -61,6 +77,16 @@ d3.json('/events.json', function(events){
       }
     }
     return container;
+  }
+
+  function addMissingYears(data, xMin, xMax) {
+    while (xMin < xMax) {
+      if !(xMin in data) {
+        data[xMin] = 0;
+      }
+      xMin += 1;
+    }
+    return data;
   }
     
   var height = 800,
