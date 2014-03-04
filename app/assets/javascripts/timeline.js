@@ -130,6 +130,17 @@ d3.json('/categories.json', function(categories){
         .attr('height', height + margin.top + margin.bottom)
         .attr('class', 'chart');
 
+        //d3 tooltip
+        var tip = d3.tip()
+          .attr('class', 'd3-tip')
+          .offset([-10, 0])
+          .html(function(d) {
+            return "<strong>Event Name:</strong> <span style='color:red'>" + d.desc + "</span>";
+          })
+
+        chart.call(tip);
+
+
         chart.append('defs').append('clipPath')
         .attr('id', 'clip')
         .append('rect')
@@ -322,7 +333,9 @@ d3.json('/categories.json', function(categories){
           .attr('width', function(d) { return x1(d.end) - x1(d.start); })
           .attr('height', function(d) { return .8 * y1(1); })
           .attr('class', function(d) { return 'mainItem ' + d.class; })
-          .attr('data-id', function(d) { return d.id });
+          .attr('data-id', function(d) { return d.id })
+          .on('mouseover', tip.show)
+          .on('mouseout', tip.hide);
 
         rects.on("click", function click(d) {
           var id = d.id;
