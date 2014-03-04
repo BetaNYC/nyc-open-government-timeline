@@ -13,7 +13,6 @@ d3.json('/events.json', function (events) {
   //get the difference between min and max years
   var range = xMax - xMin;
   //sets y min to zero
-
   //sorts arrays by number of events
   var sortedByValue = sortArraysByValue(sortedByYear);
   //sets width and height of barchart
@@ -26,6 +25,8 @@ d3.json('/events.json', function (events) {
   //makes json objects into nested array with year and count of events
   var oneLastThingData = makeTwoDArray(dataHash);
   // make array with just the values of each year
+  // [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 3, 2, 0, 1, 2, 0, 1, 11, 4, 4, 10, 21] 
+ 
   var data = flattenArray(oneLastThingData);
 
   function sortArraysByYear(arrays) {
@@ -98,8 +99,8 @@ d3.json('/events.json', function (events) {
   }
 
   //set dimensions for chart
-  var width = 420,
-    barHeight = 20;
+  var width = 800,
+    barHeight = 10;
 
   //create linear scale 
   var linearScale = d3.scale.linear()
