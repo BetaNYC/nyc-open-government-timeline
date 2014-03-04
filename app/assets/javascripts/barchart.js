@@ -4,8 +4,9 @@ d3.json('/events.json', function (events) {
   // preDataHash = {"2000":3, "2001":4, "1999":1}
 
   //makes json objects into nested array with year and count of events
-  // sortedByYear = [ [ '1999', 1 ], [ '2000', 3 ], [ '2001', 4 ] ]
   var sortedByYear = makeTwoDArray(preDataHash);
+  // sortedByYear = [ [ '1999', 1 ], [ '2000', 3 ], [ '2001', 4 ] ]
+
   //gets min year in arrays
   var xMin = sortedByYear[0][0];
   //gets max year in arrays
