@@ -23,6 +23,7 @@ d3.json('/events.json', function (events) {
 
   //add zero values to years not present in preDataHash
   var dataHash = addMissingYears(preDataHash, xMin, xMax);
+ 
   //makes json objects into nested array with year and count of events
   var oneLastThingData = makeTwoDArray(dataHash);
   // make array with just the values of each year
@@ -38,38 +39,53 @@ d3.json('/events.json', function (events) {
 
   // SVG D3 Begins ###################################################################################
 
-  var width = 800,
-      height = 600;
+  var margin = {top: 20, right: 30, bottom: 30, left: 40},
+      width = 960 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
+
+  var x = d3.scale.ordinal()
+      .rangeRoundBands([0, width], .1);
 
   var y = d3.scale.linear()
       .range([height, 0]);
 
+  var xAxis = d3.svg.axis()
+      .scale(x)
+      .orient("bottom");
+
+  var yAxis = d3.svg.axis()
+      .scale(y)
+      .orient("left");
+
   var chart = d3.select(".barchart")
-      .attr("width", width)
-      .attr("height", height);
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  var barWidth = width / data.length;
+  chart.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
 
-  var bar = chart.selectAll("g")
+  chart.append("g")
+      .attr("class", "y axis")
+      .call(yAxis);
+
+  chart.selectAll(".bar")
       .data(data)
-    .enter().append("g")
-      .attr("transform", function(d, i) { return "translate(" + i * barWidth + ",0)"; });
-
-  bar.append("rect")
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.name); })
       .attr("y", function(d) { return y(d.value); })
       .attr("height", function(d) { return height - y(d.value); })
-      .attr("width", barWidth - 1);
-
-  bar.append("text")
-      .attr("x", barWidth / 2)
-      .attr("y", function(d) { return y(d.value) + 3; })
-      .attr("dy", ".75em")
-      .text(function(d) { return d.value; });
+      .attr("width", x.rangeBand());
 
   function type(d) {
     d.value = +d.value; // coerce to number
     return d;
-  }
+}
+
 
  // Functions for data begin ###################################################################################
 
