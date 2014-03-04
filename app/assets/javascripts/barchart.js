@@ -13,6 +13,28 @@ d3.json('/events.json', function(events){
    // So we can find the difference 
    //     var difference = largestYear - smallestYear;    
 
+function make2DArray(events) {
+  var hash = {
+    "1999": 2,
+    "2000": 4,
+    "2005": 3,
+    "2003": 20
+  };
+  var array = [];
+  var arrays = [];
+  for (var i in hash) {
+    array.push(i);
+    array.push(hash[i]);
+  }
+  while (array.length > 0) {
+    arrays.push(array.splice(0, 2));
+  }
+  arrays.sort(function (a, b) {
+    return a[0] - b[0];
+  });
+  return arrays;
+}
+
 
   function getEvents(events) {
     var container = {};
