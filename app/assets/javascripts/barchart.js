@@ -24,9 +24,9 @@ d3.json('/events.json', function (events) {
   var dataHash = addMissingYears(preDataHash, xMin, xMax);
   //makes json objects into nested array with year and count of events
   var oneLastThingData = makeTwoDArray(dataHash);
+  
   // make array with just the values of each year
   // [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 3, 2, 0, 1, 2, 0, 1, 11, 4, 4, 10, 21] 
- 
   var data = flattenArray(oneLastThingData);
 
   function sortArraysByYear(arrays) {
@@ -98,47 +98,32 @@ d3.json('/events.json', function (events) {
     return array;
   }
 
-  //set dimensions for chart
+  // SVG D3 Begins ###################################################################################
+
   var width = 800,
-    barHeight = 10;
+      barHeight = 10;
 
-  //create linear scale 
-  var linearScale = d3.scale.linear()
-    .domain([0, d3.max(data)])
-    .range([0, width]);
+  var x = d3.scale.linear()
+      .domain([0, d3.max(data)])
+      .range([0, width]);
 
-  //select chart and set it to the dimensions
   var chart = d3.select(".barchart")
-    .attr("width", width)
-    .attr("height", barHeight * data.length);
+      .attr("width", width)
+      .attr("height", barHeight * data.length);
 
-  //select elements and bind data to them
-  // bar will be a rect and text
-  var barUpdate = chart.selectAll("g")
-    .data(data);
+  var bar = chart.selectAll("g")
+      .data(data)
+      .enter().append("g")
+      .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
 
-  //since there are no bars, all exist in enter
-  //add them to the DOM
-  barUpdate.enter().append("g")
-    .attr("transform", function (d, i) {
-      return "translate(0," + i * barHeight + ")";
-      //"transform: translate(0, 40)"
-    });
+  bar.append("rect")
+      .attr("width", x)
+      .attr("height", barHeight - 1);
 
-  //add the shape so we can see it!
-  barUpdate.append("rect")
-    .attr("width", linearScale)
-    .attr("height", barHeight - 3);
-
-  //add the text to explain it
-  barUpdate.append("text")
-    .attr("x", function (d) {
-      return linearScale(d - 1);
-    })
-    .attr("y", barHeight / 2)
-    .attr("dy", ".35em")
-    .text(function (d) {
-      return d;
-    });
+  bar.append("text")
+      .attr("x", function(d) { return x(d) - 3; })
+      .attr("y", barHeight / 2)
+      .attr("dy", ".35em")
+      .text(function(d) { return d; });
 
 });

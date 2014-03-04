@@ -1,8 +1,8 @@
 <html>
   <head>
-    <style type="text/css">
+    <style>
       .barchart rect {
-        fill: hotpink;
+        fill: steelblue;
       }
 
       .barchart text {
@@ -15,10 +15,10 @@
   <body>
     <div class="container">
       <h1>Barchart of Events</h1>
-      <div class="barchart">
-        <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-      </div>
+      <svg class="barchart"></svg>
     </div>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
   </body>
 </html>
