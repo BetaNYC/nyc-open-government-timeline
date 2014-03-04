@@ -1,40 +1,25 @@
 d3.json('/events.json', function(events){
   var dataHash = getEvents(events);
 
-   //  var ourYears = {"1999":2, "2000":4, "2005":3, "2003":20};
-
-   // How would we turn this into an array sorted by year like this:
-   //     var sortedYears = [["1999",2], ["2000",4], ["2003",20], ["2005", 3]];
-
-   // So that we can make variables
-   //     var largestYear = sortedYears[-1][0];
-   //     var smallestYear = sortedYears[0][0];
-
-   // So we can find the difference 
-   //     var difference = largestYear - smallestYear;    
-
-function make2DArray(events) {
-  var hash = {
-    "1999": 2,
-    "2000": 4,
-    "2005": 3,
-    "2003": 20
-  };
-  var array = [];
-  var arrays = [];
-  for (var i in hash) {
-    array.push(i);
-    array.push(hash[i]);
+  function make2DArray(events) {
+    var array = [];
+    var arrays = [];
+    for (var i in hash) {
+      array.push(i);
+      array.push(hash[i]);
+    }
+    while (array.length > 0) {
+      arrays.push(array.splice(0, 2));
+    }
+    arrays.sort(function (a, b) {
+      return a[0] - b[0];
+    });
+    return arrays;
   }
-  while (array.length > 0) {
-    arrays.push(array.splice(0, 2));
-  }
-  arrays.sort(function (a, b) {
-    return a[0] - b[0];
-  });
-  return arrays;
-}
 
+  function getTimeRange(arrays) {
+    arrays[arrays.length-1][0] - arrays[0][0];
+  }
 
   function getEvents(events) {
     var container = {};
@@ -48,11 +33,11 @@ function make2DArray(events) {
         var ourYear = ourDate.year;
         // var ourYear = ourDate.substr(0,4)
         debugger
-        if (ourYear in container) {
+        if (container[ourYear] == undefined) {
+          container[ourYear] = 1;
+        } else {
           var num = container[ourYear];
           container[ourYear] = num += 1;
-        } else {
-          container[ourYear] = 1;
         }
       }
     }
