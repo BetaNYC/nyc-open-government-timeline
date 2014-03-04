@@ -48,11 +48,11 @@ function make2DArray(events) {
         var ourYear = ourDate.year;
         // var ourYear = ourDate.substr(0,4)
         debugger
-        if (container[ourYear] == undefined) {
-          container[ourYear] = 1;
-        } else {
+        if (ourYear in container) {
           var num = container[ourYear];
           container[ourYear] = num += 1;
+        } else {
+          container[ourYear] = 1;
         }
       }
     }
