@@ -12,7 +12,7 @@ d3.json('/events.json', function(events){
   //gets min year in arrays
   var xMin = sortedByYear[0][0];
   //gets max year in arrays
-  var xMax = sortedByYear[(sortedByValue.length-1)][0];
+  var xMax = sortedByYear[(sortedByYear.length-1)][0];
   //get the difference between min and max years
   var range = xMax - xMin;
   //sets y min to zero
@@ -27,6 +27,21 @@ d3.json('/events.json', function(events){
   var dataHash = addMissingYears(preDataHash, xMin, xMax);
   //makes json objects into nested array with year and count of events
   var data = makeTwoDArray(dataHash);
+  console.log(data);
+
+  function sortArraysByYear(arrays) {
+    arrays.sort(function (a, b) {
+      return a[0] - b[0];
+    });
+    return arrays;
+  }
+
+  function sortArraysByValue(arrays) {
+    arrays.sort(function (b, a) {
+      return b[0] - a[0];
+    });
+    return arrays;
+  }
 
   function makeTwoDArray(events) {
     var array = [];
@@ -38,23 +53,7 @@ d3.json('/events.json', function(events){
     while (array.length > 0) {
       arrays.push(array.splice(0, 2));
     }
-    return sortArraysByFirst(arrays);
-  }
-
-  function adddatapoints
-
-  function sortArraysbyYear(arrays) {
-    arrays.sort(function (a, b) {
-      return a[0] - b[0];
-    });
-    return arrays;
-  }
-
-  function sortArraysbyValue(arrays) {
-    arrays.sort(function (b, a) {
-      return b[0] - a[0];
-    });
-    return arrays;
+    return sortArraysByYear(arrays);
   }
 
   function getEvents(events) {
@@ -81,7 +80,7 @@ d3.json('/events.json', function(events){
 
   function addMissingYears(data, xMin, xMax) {
     while (xMin < xMax) {
-      if !(xMin in data) {
+      if (!xMin in data) {
         data[xMin] = 0;
       }
       xMin += 1;
