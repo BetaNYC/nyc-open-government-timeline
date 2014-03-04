@@ -1,36 +1,34 @@
-d3.json('/events.json', function(events){
-  //reads json served from rails
+d3.json('/events.json', function (events) {
+  // reads json served from rails
+  // {"2000":3, "2001":4, "1999":1}
   var preDataHash = getEvents(events);
   console.log("preDataHash");
   console.log(preDataHash);
-  //makes json objects into nested array with year and count of events
-  var twoDArray = makeTwoDArray(preDataHash);
-  console.log("2D array");
-  console.log(twoDArray);
+
+  // set width and height
   var width = 800;
   var height = 800;
 
-  //sorts arrays by year
-  var sortedByYear = sortArraysByYear(twoDArray);
-  console.log("sortedByYear");
-  console.log(sortedByYear);
+  //makes json objects into nested array with year and count of events
+  // [ [ '1999', 1 ], [ '2000', 3 ], [ '2001', 4 ] ]
+  var sortedByYear = makeTwoDArray(preDataHash);
   //gets min year in arrays
   var xMin = sortedByYear[0][0];
   //gets max year in arrays
-  var xMax = sortedByYear[(sortedByYear.length-1)][0];
+  var xMax = sortedByYear[(sortedByYear.length - 1)][0];
   //get the difference between min and max years
   var range = xMax - xMin;
   //sets y min to zero
 
   //sorts arrays by number of events
-  var sortedByValue = sortArraysByValue(twoDArray);
+  var sortedByValue = sortArraysByValue(sortedByYear);
   console.log("sortedByValue");
   console.log(sortedByValue);
   //sets width and height of barchart
   var yMin = 0;
   //sets y max to max number of events
-  var yMax = sortedByValue[(sortedByValue.length-1)][1] + 1;
-  
+  var yMax = sortedByValue[(sortedByValue.length - 1)][1];
+
   //add zero values to years not present in preDataHash
   var dataHash = addMissingYears(preDataHash, xMin, xMax);
   console.log("dataHash");
@@ -54,12 +52,12 @@ d3.json('/events.json', function(events){
     return arrays;
   }
 
-  function makeTwoDArray(events) {
+  function makeTwoDArray(hash) {
     var array = [];
     var arrays = [];
-    for (var i in events) {
+    for (var i in hash) {
       array.push(i);
-      array.push(events[i]);
+      array.push(hash[i]);
     }
     while (array.length > 0) {
       arrays.push(array.splice(0, 2));
@@ -71,12 +69,12 @@ d3.json('/events.json', function(events){
     var container = {};
     var eventCounter = 0;
     for (i = 0; i < events.length; i++) {
-      if (events[i].categories.length) { 
+      if (events[i].categories.length) {
         eventCounter++;
         var ourEvent = events[i];
         var ourDate = new Date(ourEvent.date);
         var ourYear = ourDate.getFullYear();
-        if (container[ourYear] == undefined) {
+        if (container[ourYear] === undefined) {
           container[ourYear] = 1;
         } else {
           var num = container[ourYear];
@@ -89,14 +87,18 @@ d3.json('/events.json', function(events){
 
   function addMissingYears(data, xMin, xMax) {
     while (xMin < xMax) {
-      if (!xMin in data) {
+      if (data[xMin] === undefined) {
         data[xMin] = 0;
       }
-      xMin += 1;
+      var temp = parseInt(xMin);
+      temp += 1;
+      xMin = temp.toString();
     }
     return data;
   }
-    
+
+});
+
   // var height = 800,
   //   barWidth = (800/range);
 
@@ -136,5 +138,3 @@ d3.json('/events.json', function(events){
   //   .text(function(d){
   //     return d;
   //   });
-
-});
