@@ -47,7 +47,6 @@ function make2DArray(events) {
         var ourDate = new Date(ourEvent.date);
         var ourYear = ourDate.year;
         // var ourYear = ourDate.substr(0,4)
-        debugger
         if (ourYear in container) {
           var num = container[ourYear];
           container[ourYear] = num += 1;
