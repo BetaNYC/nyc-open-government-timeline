@@ -1,11 +1,24 @@
 <html>
   <head>
-    <title>d3JS Barchart</title>
+    <style>
+      .barchart rect {
+        fill: steelblue;
+      }
+
+      .barchart text {
+        fill: white;
+        font: 10px sans-serif;
+        text-anchor: end;
+      }
+    </style>
   </head>
   <body>
-    <div class="timeline">
-      <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <div class="container">
+      <h1>Barchart of Events</h1>
+      <svg class="barchart"></svg>
     </div>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
   </body>
 </html>

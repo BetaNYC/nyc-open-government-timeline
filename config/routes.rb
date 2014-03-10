@@ -11,6 +11,7 @@ NYCOpenGovernment::Application.routes.draw do
 
   get '/home' => 'pages#home'
   get '/timeline' => 'pages#timeline'
+  get '/barchart' => 'pages#barchart'
   get '/events/format/outline' => 'pages#outline'
   get '/about' => 'pages#about'
   get '/contact' => 'pages#contact'
