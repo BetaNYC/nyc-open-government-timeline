@@ -84,15 +84,14 @@ d3.json('/categories.json', function(categories){
         function addSpace(date) {
           day = date.getDay();
           month = date.getMonth();
-          year = Number(date.getFullYear());
-          if (month <= 9) {
-            month += 3;
+          year = date.getFullYear();
+          if (month <= 11) {
+            month += 1;
           } else {
-            month -= 9;
+            month -= 11;
             year += 1;
           }
-
-          return new Date(year, month, day)
+          return new Date(year, month, day);
         }
 
         // define the chart extents
