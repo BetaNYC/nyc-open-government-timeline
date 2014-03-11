@@ -9,6 +9,7 @@
       <option value="name">Name</option>
       <option value="date">Date</option>
       <option value="categories[0].name">Category</option>
+      <option value="sub_category">Sub-category</option>
     </select>
   </div>
 
@@ -16,6 +17,7 @@
       <tr>
         <th>Name</th>
         <th>Category</th>
+        <th>Sub-category</th>
         <th>Link</th>
         <th>Description</th>
         <th>Status</th>
@@ -24,6 +26,7 @@
       <tr ng-repeat="event in events | filter: query | orderBy:orderProp" data-id={{event.id}}>
         <td><a href="/events/{{event.id}}">{{event.name}}</a></td>
         <td>{{event.categories[0].name}}</td>
+        <td>{{event.sub_category}}</td>
         <td><a href="{{event.url}}">URL</a></td>
         <td>{{event.description}}</td>
         <td>{{event.status}}</td>

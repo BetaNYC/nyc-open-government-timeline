@@ -5,9 +5,9 @@
 
 <table>
   <tr> 
-    <th>id</th>
     <th>Name</th>
     <th>Category</th>
+    <th>Sub-category</th>
     <th>URL</th>
     <th>Description</th>
     <th>Status</th>
@@ -18,13 +18,13 @@
 <% @events.each do |event| %> 
   <tr>
     <td>
-      <%= event.id %></a>
-    </td>
-    <td>
       <a href="/events/<%=event.id%>"><%= event.name %></a>
     </td>
     <td>
       <%= categories(event) %>
+    </td>
+    <td>
+      <%= event.sub_category %>
     </td>
     <td>
       <a href="<%= event.url %>">Website</a>
