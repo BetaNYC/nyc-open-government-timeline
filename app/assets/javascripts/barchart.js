@@ -28,13 +28,10 @@ d3.json('/events.json', function (events) {
   //makes json objects into nested array with year and count of events
   var data = makeTwoDArray(dataHash);
   // data = [["1974",2],["1975",0],["1976",0],["1977",0],["1978",0]...]
-  console.log(data);
 
   var xRange = flattenArray(data, 0);
-  console.log(xRange);
 
   var yRange = flattenArray(data, 1);
-  console.log(yRange);
 
   var width = 1000,
      height = 600;

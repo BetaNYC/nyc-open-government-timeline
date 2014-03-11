@@ -1,27 +1,32 @@
 NYCOpenGovernment::Application.routes.draw do
+  
+  # home
+  root :to => 'pages#timeline'
 
-  # root 'pages#timeline'
-
+  # angular
   get '/events-angular', :to => redirect('/app/index.html#/events')
   get '/categories-angular', :to => redirect('/app/index.html#/categories')
   get '/404-angular', :to => redirect('app/index.html#/404')
-  
+
+  # custom category routes
   get '/events/categories' => 'eventcategories#delete'
   get '/events/categories/:category' => 'categories#show'
 
+  # static pages
   get '/home' => 'pages#home'
-  get '/timeline' => 'pages#timeline'
+  get '/d3timeline' => 'pages#d3timeline'
   get '/barchart' => 'pages#barchart'
   get '/events/format/outline' => 'pages#outline'
   get '/about' => 'pages#about'
   get '/contact' => 'pages#contact'
   get '/database' => 'pages#database'
-  
+
+  # api
   get '/api' => 'pages#api'
   get '/api/categories/name=:name' => 'categories#api_by_name'
   get '/api/events/name=:name' => 'events#api_by_name'
+  get '/timelineJS' => 'pages#timeline_json'
 
-  get '/timelineJS' =>'pages#timeline_json'
   resources :categories 
 
   resources :events do

@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <style>
+      .chart {
+        shape-rendering: crispEdges;
+      }
+      .laneBackground rect {
+        fill: hotpink;
+      }
+      .mini text {
+        font: 9px sans-serif; 
+      }
+      .main text {
+        font: 12px sans-serif;  
+      }
+      .month text {
+        text-anchor: start;
+      }
+      .todayLine {
+        stroke: blue;
+        stroke-width: 1.5;
+      }
+      .axis line, .axis path {
+        stroke: black;
+      }
+      .miniItem {
+        stroke-width: 6;  
+      }
+      .item {
+        stroke-width: 2;
+        stroke: black;
+        fill: hotpink;
+      }
+
+      .pop-up {
+        position: fixed;
+        background-color: white;
+        border: 1px solid black;
+        min-width: 70%;
+        height: 50%;
+        z-index: 2;
+        -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.55);
+           -moz-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.55);
+                box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.55);
+      }
+
+      .pop-up li {
+        word-wrap: break-word; 
+      }
+       
+      .brush .extent {
+        stroke: gray;
+        fill: yellow;
+        fill-opacity: .165;
+      }
+
+      /* tooltip */
+      .d3-tip {
+        line-height: 1;
+        font-weight: bold;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        border-radius: 2px;
+      }
+      
+      /* Creates a small triangle extender for the tooltip */
+      .d3-tip:after {
+        box-sizing: border-box;
+        display: inline;
+        font-size: 10px;
+        width: 100%;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.8);
+        content: "\25BC";
+        position: absolute;
+        text-align: center;
+      }
+      
+      /* Style northward tooltips differently */
+      .d3-tip.n:after {
+        margin: -1px 0 0 0;
+        top: 100%;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Timeline of Events</h1>
+    <div class="timeline">
+      <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
+      <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    </div>
+  </body>
+</html>
+
+
+
