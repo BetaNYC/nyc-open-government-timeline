@@ -1,9 +1,9 @@
  $(document).ready(function() {
   createStoryJS({
       type:       'timeline',
-      width:      '800',
+      width:      '90%',
       height:     '600',
-      source:     'path_to_json/or_link_to_googlespreadsheet',
+      source:     '/timelineJS.json',
       embed_id:   'my-timeline'
   });
 });

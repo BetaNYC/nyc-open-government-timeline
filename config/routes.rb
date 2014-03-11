@@ -21,6 +21,7 @@ NYCOpenGovernment::Application.routes.draw do
   get '/api/categories/name=:name' => 'categories#api_by_name'
   get '/api/events/name=:name' => 'events#api_by_name'
 
+  get '/timelineJS' =>'pages#timeline_json'
   resources :categories 
 
   resources :events do

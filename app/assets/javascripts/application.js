@@ -17,3 +17,4 @@
 //= require_tree ./sitewide
 //= require timeline.js
 //= require barchart.js
+//= require timelineJS.js
