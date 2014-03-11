@@ -33,9 +33,10 @@ class Parser
         :date => date,
         :name => hash["Name"],
         :url => hash["URL"],
-        :description => hash["Description"]
+        :description => hash["Description"],
+        :sub_category => hash["Type of Event"]
       )
-      category_name = hash["Type of Event"]  #grabs category string name from csv
+      category_name = hash["Parent"]  #grabs category string name from csv
       category = Category.find_by_name(category_name) #find the category object with name = string name
       if category   #if that category exists in the db already
         event_object.categories << category    # add existing category to the event objects categories    

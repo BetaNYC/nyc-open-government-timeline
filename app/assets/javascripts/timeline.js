@@ -84,15 +84,14 @@ d3.json('/categories.json', function(categories){
         function addSpace(date) {
           day = date.getDay();
           month = date.getMonth();
-          year = Number(date.getFullYear());
-          if (month <= 9) {
-            month += 3;
+          year = date.getFullYear();
+          if (month <= 11) {
+            month += 1;
           } else {
-            month -= 9;
+            month -= 11;
             year += 1;
           }
-
-          return new Date(year, month, day)
+          return new Date(year, month, day);
         }
 
         // define the chart extents
@@ -129,6 +128,17 @@ d3.json('/categories.json', function(categories){
         .attr('width', width + margin.right + margin.left)
         .attr('height', height + margin.top + margin.bottom)
         .attr('class', 'chart');
+
+        //d3 tooltip
+        var tip = d3.tip()
+          .attr('class', 'd3-tip')
+          .offset([-10, 0])
+          .html(function(d) {
+            return "<strong>Event Name:</strong> <span style='color:red'>" + d.desc + "</span>";
+          })
+
+        chart.call(tip);
+
 
         chart.append('defs').append('clipPath')
         .attr('id', 'clip')
@@ -322,7 +332,9 @@ d3.json('/categories.json', function(categories){
           .attr('width', function(d) { return x1(d.end) - x1(d.start); })
           .attr('height', function(d) { return .8 * y1(1); })
           .attr('class', function(d) { return 'mainItem ' + d.class; })
-          .attr('data-id', function(d) { return d.id });
+          .attr('data-id', function(d) { return d.id })
+          .on('mouseover', tip.show)
+          .on('mouseout', tip.hide);
 
         rects.on("click", function click(d) {
           var id = d.id;
