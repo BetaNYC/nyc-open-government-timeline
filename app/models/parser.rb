@@ -27,8 +27,10 @@ class Parser
 
   def add_to_database
     parse.each do |hash|
-      array = hash["Date"].split("-")
+      array = hash["Date"].split("/")
       date = [array[1], array[0], array[2]].join("-")
+      # if hash["Name"] == "NYC Chief Information Innovation Officer appointed - Rahul N. Merchant"
+        # debugger
       event_object = Event.create(
         :date => date,
         :name => hash["Name"],

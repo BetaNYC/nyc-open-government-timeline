@@ -323,13 +323,13 @@ d3.json('/categories.json', function(categories){
         rects = itemRects.selectAll('rect')
           .data(visItems, function (d) { return d.id; })
           .attr('x', function(d) { return x1(d.start); })
-          .attr('width', function(d) { return x1(d.end) - x1(d.start); });
+          .attr('width', function(d) { return 30 });
           
 
         rects.enter().append('rect')
           .attr('x', function(d) { return x1(d.start); })
           .attr('y', function(d) { return y1(d.lane) + .1 * y1(1) + 0.5; })
-          .attr('width', function(d) { return x1(d.end) - x1(d.start); })
+          .attr('width', function(d) { return 30})
           .attr('height', function(d) { return .8 * y1(1); })
           .attr('class', function(d) { return 'mainItem ' + d.class; })
           .attr('data-id', function(d) { return d.id })
