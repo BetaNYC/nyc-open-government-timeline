@@ -32,7 +32,7 @@ class Timeline
         "startDate" => "#{event.date}",
         "endDate" => "#{event.date}",
         "headline" => "#{event.name}",
-        "text" => "<p>#{event.description}</p>",
+        "text" => "<p>#{event.description}</p><br><p style='font-size: .85em'>Sub-category: #{event.sub_category}</p>",
         "tag" => "#{event.categories.first.name}",
         "classname" => "",
         "asset" => {
