@@ -17,9 +17,8 @@ class Timeline
           "type" => "default",
           "text" => "<p>#{intro}</p>",
           "asset" => {
-              "media" => "http://yourdomain_or_socialmedialink_goes_here.jpg",
-              "credit" => "Credit Name Goes Here",
-              "caption" => "Caption text goes here"
+              "media" => "/app/img/logo.png",
+              "caption" => "BetaNYC's logo"
           },
           "date" => [
               
