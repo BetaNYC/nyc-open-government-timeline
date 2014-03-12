@@ -6,4 +6,6 @@
       source:     '/timelineJS.json',
       embed_id:   'my-timeline'
   });
+
+  $(".date").remove()
 });

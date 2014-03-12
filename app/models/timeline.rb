@@ -1,5 +1,7 @@
 # timeline.rb
 
+require 'date'
+
 class Timeline
 
   attr_accessor :attribute_hash
@@ -28,9 +30,17 @@ class Timeline
 
   def add_events(events)
     events.each do |event|
+      #This is for putting date into a format the timeline.js expects
+      if event.date.nil? 
+        next 
+      end
+
+      date = event.date.to_s.split(" ")
+      reformatted_date = date[0].split("-").join(",")
+
       eventJSON = {
-        "startDate" => "#{event.date}",
-        "endDate" => "#{event.date}",
+        "startDate" => "#{reformatted_date}",
+        "endDate" => "#{reformatted_date}",
         "headline" => "#{event.name}",
         "text" => "<p>#{event.description}</p><br><p style='font-size: .85em'>Sub-category: #{event.sub_category}</p>",
         "tag" => "#{event.categories.first.name}",
