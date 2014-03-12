@@ -13,12 +13,12 @@ class Timeline
     @attribute_hash = {
       "timeline" =>
       {
-          "headline" => "#{name}",
+          "headline" => "NYC’s Open Data & Government Timeline",
           "type" => "default",
-          "text" => "<p>#{intro}</p>",
+          "text" => 'Welcome to NYC’s open government timeline. This site will walk you historical events that have made NYC one of the most open and connected cities on this planet. The site is broken down into five categories: community, events, legislative actions and executive orders, policy changes, and tools. You can improve this site via <a href="https://github.com/BetaNYC/nyc-open-government-timeline">GitHub</a> or add an event via this <a href="https://docs.google.com/a/betanyc.us/forms/d/16SQjfvdVEGo8MWv0vLYDVp31opJ5U54VZbcAERfCoQw/viewform">form</a>.',
           "asset" => {
-              "media" => "/app/img/logo.png",
-              "caption" => "BetaNYC's logo"
+              "media" => "/app/img/banner.png",
+              "caption" => "BetaNYC's Open Data & Government Timeline"
           },
           "date" => [
               
