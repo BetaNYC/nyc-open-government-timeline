@@ -7,5 +7,5 @@
       embed_id:   'my-timeline'
   });
 
-  $(".date").remove()
+  $(".timenav-tag-size-half").children().children().addClass("darkenify");
 });
