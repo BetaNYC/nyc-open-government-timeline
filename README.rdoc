@@ -13,4 +13,4 @@ Configuation:
 * quit
 * rails s
 -------- in browser's url --------
-* localhost:3000/home
+* localhost:3000/
