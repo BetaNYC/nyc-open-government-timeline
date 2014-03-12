@@ -1,4 +1,4 @@
- $(document).ready(function() {
+$(document).ready(function() {
   createStoryJS({
       type:       'timeline',
       width:      '100%',
@@ -7,5 +7,15 @@
       embed_id:   'my-timeline'
   });
 
-  $(".timenav-tag-size-half").children().children().css('color','black');
+});
+
+$(document).ready(function() { 
+  var check = function(){
+    if($(".timenav-tag-size-half").children().children().length == 5) {
+      $(".timenav-tag-size-half").children().children().css({'color': '#484848'});
+    } else {
+      setTimeout(check, 1000); // check again in a second
+    }
+  }
+  check();
 });
