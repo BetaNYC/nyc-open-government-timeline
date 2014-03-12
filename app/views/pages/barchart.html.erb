@@ -1,6 +1,11 @@
 <html>
   <head>
     <style>
+      .contain-this {
+        text-align: center;
+        width: 100%;
+      }
+
       .barchart rect {
         fill: steelblue;
       }
@@ -15,10 +20,12 @@
   <body>
     <div class="container">
       <h1>Barchart of Events</h1>
-      <svg class="barchart"></svg>
-    </div>
-    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
+      <div class="contain-this">
+        <svg class="barchart"></svg>
+        <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+      <div> <!-- contain-this -->
+    </div> <!-- container -->
   </body>
 </html>
