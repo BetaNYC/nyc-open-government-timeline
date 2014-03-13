@@ -29,17 +29,38 @@
         font: 10px sans-serif;
         text-anchor: end;
       }
+
+      .num-of-events {
+        position: absolute;
+        top: 425px;
+        /* Safari */
+        -webkit-transform: rotate(-90deg);
+        /* Firefox */
+        -moz-transform: rotate(-90deg);
+        /* IE */
+        -ms-transform: rotate(-90deg);
+        /* Opera */
+        -o-transform: rotate(-90deg);
+        /* Internet Explorer */
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+      }
+
     </style>
   </head>
   <body>
     <div class="container">
       <h1>Barchart of Events</h1>
+      <p class="num-of-events">Number of Events<p>
       <div class="contain-this">
         <svg class="barchart"></svg>
         <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="http://d3js.org/d3.v3.min.js"></script>
       <div> <!-- contain-this -->
+      <div class="contain-this">
+        <p>Year<p>
+      </div> <!-- centerz -->
     </div> <!-- container -->
   </body>
 </html>
