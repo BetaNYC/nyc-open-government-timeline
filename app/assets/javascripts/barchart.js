@@ -33,8 +33,9 @@ d3.json('/events.json', function (events) {
 
   var yRange = flattenArray(data, 1);
 
-  var width = 1000,
-     height = 600;
+  var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 1000 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
 
   var barWidth = width/xRange.length;
 
@@ -57,8 +58,10 @@ d3.json('/events.json', function (events) {
      .orient("left");
 
    var chart = d3.select(".barchart")
-     .attr("width", width)
-     .attr("height", height);
+     .attr("width", width + margin.left + margin.right)
+     .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
    chart.append("g")
      .attr("class", "x axis")
