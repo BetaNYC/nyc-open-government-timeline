@@ -39,9 +39,9 @@ d3.json('/events.json', function (events) {
 
   var barWidth = width/xRange.length;
 
-   var x = d3.scale.ordinal()
-     .domain(xRange)
-     .range(yRange);
+   var x = d3.scale.linear() // TODO use d3.time.scale
+     .domain([xMin, xMax])
+     .range([0, width]);
 
    var y = d3.scale.linear()
      .range([height, 0])
@@ -51,7 +51,8 @@ d3.json('/events.json', function (events) {
 
    var xAxis = d3.svg.axis()
      .scale(x)
-     .orient("bottom");
+     .orient("bottom")
+     .tickFormat(d3.format("0000")); // 4-digit years
 
    var yAxis = d3.svg.axis()
      .scale(y)
