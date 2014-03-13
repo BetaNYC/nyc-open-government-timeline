@@ -3,10 +3,11 @@
   <ul>
     <li>Description: <%= @event.description %></li>
     <li>Category: <%= categories(@event) %></li>
-    <li>Date: <%= @event.date.month %>/<%= @event.date.day %>/<%= @event.date.year %></li>
+    <li>Date: 
+      <% unless @event.date.nil? %>
+        <%= @event.date.month %>/<%= @event.date.day %>/<%= @event.date.year %></li>
+      <% end %>
     <li>Event Url: <a href= "<%= @event.url %>"><%= @event.url %></a></li>
-    <li><%= link_to 'Edit', edit_event_path(@event) %></li>
-    <li><%= link_to 'Destroy', @event, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
 
   <h3>Comments</h3>
@@ -34,5 +35,5 @@
   </table>
   <br>
   <%= link_to 'New Comment', new_event_comment_path(@event) %>
-  <%= link_to 'Back', events_path %>
+  <a href="/app/index.html#/events">Back</a>
 </div>
