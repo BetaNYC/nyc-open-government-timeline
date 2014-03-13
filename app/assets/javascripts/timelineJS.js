@@ -7,5 +7,5 @@
       embed_id:   'my-timeline'
   });
 
-  $(".date").remove()
+  $(".date").remove();
 });
