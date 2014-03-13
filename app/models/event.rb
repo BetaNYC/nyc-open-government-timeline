@@ -7,7 +7,7 @@ class EventValidator < ActiveModel::Validator
 end
 
 class Event < ActiveRecord::Base
-  attr_accessible :date, :name, :categories, :description, :status, :url, :categories_attributes, :sub_category
+  attr_accessible :date, :name, :categories, :description, :url, :categories_attributes, :sub_category
   has_many :comments
   has_many :category_events
   has_many :categories, :through => :category_events

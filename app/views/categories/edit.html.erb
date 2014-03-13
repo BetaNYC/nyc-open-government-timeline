@@ -16,7 +16,6 @@
       <th>Name</th>
       <th>Description</th>
       <th>URL</th>
-      <th>Status</th>
       <th>Date</th>
     </tr>
   <%  @category.events.each do |event| %> 
@@ -31,10 +30,9 @@
         <a href=<%= event.url %>>URL</a>
       </td>
       <td>
-        <%= event.status %>
-      </td>
-      <td>
-        <%= event.date.month %>/<%= event.date.day %>/<%= event.date.year %>
+        <% unless event.date.nil? %>
+          <%= event.date.month %>/<%= event.date.day %>/<%= event.date.year %>
+        <% end %>
       </td>
       <td>
         <%= link_to 'View Event', event_path(event) %>

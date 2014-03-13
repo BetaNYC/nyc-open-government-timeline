@@ -20,7 +20,6 @@
         <th>Sub-category</th>
         <th>Link</th>
         <th>Description</th>
-        <th>Status</th>
         <th>Date</th>
       </tr>
       <tr ng-repeat="event in events | filter: query | orderBy:orderProp" data-id={{event.id}}>
@@ -29,7 +28,6 @@
         <td>{{event.sub_category}}</td>
         <td><a href="{{event.url}}">URL</a></td>
         <td>{{event.description}}</td>
-        <td>{{event.status}}</td>
         <td>{{event.date | date: 'longDate'}}</td>
         <td>
           <form>
