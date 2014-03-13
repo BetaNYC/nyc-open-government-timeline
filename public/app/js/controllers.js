@@ -11,7 +11,7 @@ timelineControllers.controller('EventListCtrl', ['$scope','$http',
     $scope.orderProp = 'date';
     
     $scope.deleteEvent = function(eventID) {
-      alert("POOP");
+      alert("Deleted event");
 
       $http.delete('/events/' + eventID, {
         params: {angular: true}}).success(function(response) {
