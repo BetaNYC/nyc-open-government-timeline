@@ -33,32 +33,34 @@ d3.json('/events.json', function (events) {
 
   var yRange = flattenArray(data, 1);
 
-  var width = 1000,
-     height = 600;
+  var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 1000 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
 
   var barWidth = width/xRange.length;
 
-   var x = d3.scale.ordinal()
-     .domain(xRange)
-     .range(yRange);
+   var x = d3.scale.linear() // TODO use d3.time.scale
+     .domain([xMin, xMax])
+     .range([0, width]);
 
    var y = d3.scale.linear()
-     .range([height, 0])
-     .domain([0, d3.max(data, function (d) {
-       return d[1];
-     })]);
+     .domain([yMin, yMax])
+     .range([height, 0]);
 
    var xAxis = d3.svg.axis()
      .scale(x)
-     .orient("bottom");
+     .orient("bottom")
+     .tickFormat(d3.format("0000")); // 4-digit years
 
    var yAxis = d3.svg.axis()
      .scale(y)
      .orient("left");
 
    var chart = d3.select(".barchart")
-     .attr("width", width)
-     .attr("height", height);
+     .attr("width", width + margin.left + margin.right)
+     .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
    chart.append("g")
      .attr("class", "x axis")
@@ -74,7 +76,7 @@ d3.json('/events.json', function (events) {
      .enter().append("rect")
      .attr("class", "bar")
      .attr("x", function (d, i) {
-       return i*barWidth; 
+       return x(d[0])
      })
      .attr("y", function (d) {
        return y(d[1]);
