@@ -44,10 +44,8 @@ d3.json('/events.json', function (events) {
      .range([0, width]);
 
    var y = d3.scale.linear()
-     .range([height, 0])
-     .domain([0, d3.max(data, function (d) {
-       return d[1];
-     })]);
+     .domain([yMin, yMax])
+     .range([height, 0]);
 
    var xAxis = d3.svg.axis()
      .scale(x)
@@ -78,7 +76,7 @@ d3.json('/events.json', function (events) {
      .enter().append("rect")
      .attr("class", "bar")
      .attr("x", function (d, i) {
-       return i*barWidth; 
+       return x(d[0])
      })
      .attr("y", function (d) {
        return y(d[1]);
