@@ -21,6 +21,14 @@
           <li><a target="_blank" href="https://github.com/BetaNYC/nyc-open-government-timeline">Project on GitHub</a></li>
           <li><a target="_blank" href="http://betanyc.us">Learn more about BetaNYC</a></li>
         </ul>
+        <div id="user_nav">
+          <% if user_signed_in? %>
+            Signed in as <%= current_user.email %>. Not you?
+            <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+          <% else %>
+            <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+          <% end %>
+        </div>
       </div> <!-- navbar-collapse collapse -->
     </div> <!-- navebar navbar-default navbar-static-top -->
   </div> <!-- wrapper -->
