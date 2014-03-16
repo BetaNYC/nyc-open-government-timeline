@@ -56,6 +56,9 @@ end
 # to use attr_accessible
 gem 'protected_attributes'
 
+# user authentication solution See: https://github.com/plataformatec/devise
+gem 'devise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

@@ -1,5 +1,6 @@
 NYCOpenGovernment::Application.routes.draw do
   
+  devise_for :users
   # home
   root :to => 'pages#timeline'
 
