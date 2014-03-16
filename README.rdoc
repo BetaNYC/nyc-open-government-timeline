@@ -14,3 +14,13 @@ Configuation:
 * rails s
 -------- in browser's url --------
 * localhost:3000/
+
+=API
+
+* /events.json --- returns JSON for all timeline events
+
+* /categories.json --- returns JSON for event categories
+
+* /api/categories/name=<category_name> --- returns JSON of timeline events for a specific category
+
+* /api/events/name=<event_name> --- returns JSON of timeline event for specific event name
