@@ -1,5 +1,8 @@
 NYCOpenGovernment::Application.routes.draw do
   
+  # devise authentication solution
+  devise_for :users
+
   # home
   root :to => 'pages#timeline'
 
@@ -27,8 +30,6 @@ NYCOpenGovernment::Application.routes.draw do
   get '/api/events/name=:name' => 'events#api_by_name'
   get '/timelineJS' => 'pages#timeline_json'
 
-  devise_for :users
-  
   resources :categories 
 
   resources :events do
