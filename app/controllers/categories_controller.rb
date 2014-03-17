@@ -2,6 +2,9 @@
 
 class CategoriesController < ApplicationController
 
+  #triggers devise method that redirects to login for all actions with exceptions
+  before_filter :authenticate_user!, :except => [:show, :index, :api_by_name]
+
   def index
     @categories = Category.all
 
