@@ -5,8 +5,10 @@
 <% @events.each do |event| %>
     <%= event.name %>
     <%= link_to 'Show', event_path(event) %>
-    <%= link_to 'Edit', edit_event_path(event) %>
-    <%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %>
+    <% if current_user.try(:admin?) %>
+      <%= link_to 'Edit', edit_event_path(event) %>
+      <%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %>
+    <% end %>
     <ul>
       <li>Type of Event: <%= categories(event) %></li>
       <li>Description: <%= event.description %></li>

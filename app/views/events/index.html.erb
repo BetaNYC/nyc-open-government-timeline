@@ -1,6 +1,8 @@
 <div class="container">
   <h1>Table of Events Sorted by Date</h1>
-  <%= link_to 'Create Event', new_event_path %>
+  <% if current_user.try(:admin?) %>
+    <%= link_to 'Create Event', new_event_path %>
+  <% end %>
   <%= link_to 'View as an Outline', :controller => 'pages', :action => 'outline' %>
 
 <table>
@@ -37,12 +39,14 @@
     <td>
       <%= link_to 'View Event', event_path(event) %>
     </td>
-    <td>
-      <%= link_to 'Edit', edit_event_path(event)%>
-    </td>
-    <td>
-      <%= link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete %>
-    </td>
+    <% if current_user.try(:admin?) %>
+      <td>
+        <%= link_to 'Edit', edit_event_path(event)%>
+      </td>
+      <td>
+        <%= link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete %>
+      </td>
+    <% end %>
   </tr>
   <% end %>
 </table>

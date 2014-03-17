@@ -24,16 +24,20 @@
       <td>
         <%= comment.content %>
       </td>
-      <td>
-        <%= link_to 'Edit', edit_event_comment_path(@event, comment) %>
-      </td>
-      <td>
-        <%= link_to 'Destroy', event_comment_path(@event, comment), :method => :delete, :data => { :confirm => 'Are you sure?' } %>
-      </td>
+      <% if current_user.try(:admin?) %>
+        <td>
+          <%= link_to 'Edit', edit_event_comment_path(@event, comment) %>
+        </td>
+        <td>
+          <%= link_to 'Destroy', event_comment_path(@event, comment), :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+        </td>
+      <% end %>
     </tr>
     <% end %>
   </table>
   <br>
-  <%= link_to 'New Comment', new_event_comment_path(@event) %>
+  <% if current_user.try(:admin?) %>
+    <%= link_to 'New Comment', new_event_comment_path(@event) %>
+  <% end %>
   <a href="/app/index.html#/events">Back</a>
 </div>

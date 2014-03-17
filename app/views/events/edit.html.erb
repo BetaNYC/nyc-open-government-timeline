@@ -1,4 +1,6 @@
 <div class="container">
-  <h1>Edit <%=@event.name %></h1>
-  <%= render 'form' %>
+  <% if current_user.try(:admin?) %>
+    <h1>Edit <%=@event.name %></h1>
+    <%= render 'form' %>
+  <% end %>
 </div>
