@@ -9,18 +9,20 @@ describe "User resource pages" do
     end
   end
 
-  describe "user sign in" do
-    it "permits users to sign in once they have registered" do
-      user = User.create(:email => "jasper@example.com", :password => "adoptabunny")
+  describe "user sign in", :type => :feature do
 
-      visit "/users/sign_in"
+    before :each do
+      User.create(:email => 'jasper@example.com', :password => 'adoptabunny')
+    end
 
-      fill_in "Email",    :with => "jasper@example.com"
-      fill_in "Password", :with => "adoptabunny"
-
-      click_button "Sign in"
-
-      page.should have_content("Signed in successfully.")
+    it "sign a user in" do
+      visit '/sessions/new'
+      within("#session") do
+        fill_in 'Login', :with => 'jasper@example.com'
+        fill_in 'Password', :with => 'password'
+      end
+      click_link 'Sign in'
+      expect(page).to have_content 'NYC’s Open Data & Government Timeline'
     end
   end
 
