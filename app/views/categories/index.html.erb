@@ -6,10 +6,14 @@
       <li>
       <%= category.name %>
       <%= link_to 'Show', category_path(category) %>
-      <%= link_to 'Edit', edit_category_path(category) %>
-      <%= link_to 'Destroy', category, confirm: 'Are you sure?', method: :delete %>
+      <% if current_user.try(:admin?) %>
+        <%= link_to 'Edit', edit_category_path(category) %>
+        <%= link_to 'Destroy', category, confirm: 'Are you sure?', method: :delete %>
+      <% end %>
       </li>   
   <% end %>
   </ul>
-  <%= link_to 'Create Category', new_category_path %>
+  <% if current_user.try(:admin?) %>
+    <%= link_to 'Create Category', new_category_path %>
+  <% end %>
 </div>

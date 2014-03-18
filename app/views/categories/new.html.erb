@@ -1,5 +1,7 @@
-<div class="container">
-  <% provide(:title, "| New Category") %> 
-  <h1>Create new category</h1>
-  <%= render 'form' %>
-</div>
+<% if current_user.try(:admin?) %>
+  <div class="container">
+    <% provide(:title, "| New Category") %> 
+    <h1>Create new category</h1>
+    <%= render 'form' %>
+  </div>
+<% end %>
