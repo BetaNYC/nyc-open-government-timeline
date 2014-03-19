@@ -1,8 +1,7 @@
 NYCOpenGovernment::Application.routes.draw do
   
   # devise authentication solution
-  devise_for :users#, :path_names => { sign_up => "register" }
-
+  devise_for :users, controllers: {sessions: "sessions"}
   # home
   root :to => 'pages#timeline'
 

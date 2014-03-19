@@ -16,13 +16,13 @@ describe "User resource pages" do
     end
 
     it "sign a user in" do
-      visit '/sessions/new'
-      within("#session") do
-        fill_in 'Login', :with => 'jasper@example.com'
+      visit '/users/sign_in'
+      within(".container") do
+        fill_in 'Email', :with => 'jasper@example.com'
         fill_in 'Password', :with => 'password'
       end
-      click_link 'Sign in'
-      expect(page).to have_content 'NYC’s Open Data & Government Timeline'
+      click_button 'Sign in'
+      expect(page).to have_content 'Government Timeline'
     end
   end
 
