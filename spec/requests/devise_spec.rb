@@ -15,7 +15,7 @@ describe "User resource pages" do
       User.create(:email => 'jasper@example.com', :password => 'adoptabunny')
     end
 
-    it "sign a user in" do
+    it "signs a user in" do
       visit '/users/sign_in'
       within(".container") do
         fill_in 'Email', :with => 'jasper@example.com'
@@ -25,5 +25,18 @@ describe "User resource pages" do
       expect(page).to have_content 'Government Timeline'
     end
   end
+
+  describe "user sign out", :type => :feature do
+
+    before :each do
+      User.create(:email => 'jasper@example.com', :password => 'adoptabunny')
+    end
+
+    it "signs a user out" do
+      visit '/users/sign_out'
+      expect(page).to have_content 'Government Timeline'
+    end
+  end
+
 
 end
