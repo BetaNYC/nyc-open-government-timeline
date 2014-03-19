@@ -9,7 +9,7 @@ describe "User resource pages" do
     end
   end
 
-  describe "user sign in", :type => :feature do
+  describe "home page", :type => :feature do
 
     before :each do
       User.create(:email => 'jasper@example.com', :password => 'adoptabunny')
@@ -19,24 +19,25 @@ describe "User resource pages" do
       visit '/users/sign_in'
       within(".container") do
         fill_in 'Email', :with => 'jasper@example.com'
-        fill_in 'Password', :with => 'password'
+        fill_in 'Password', :with => 'adoptabunny'
       end
       click_button 'Sign in'
-      expect(page).to have_content 'Government Timeline'
+      expect(page).to have_selector(".alert-notice", :text => "Signed in successfully.")
     end
   end
 
   describe "user sign out", :type => :feature do
 
-    before :each do
-      User.create(:email => 'jasper@example.com', :password => 'adoptabunny')
-    end
-
     it "signs a user out" do
+      visit '/users/sign_in'
+      within(".container") do
+        fill_in 'Email', :with => 'jasper@example.com'
+        fill_in 'Password', :with => 'adoptabunny'
+      end
+      click_button 'Sign in'
       visit '/users/sign_out'
-      expect(page).to have_content 'Government Timeline'
+      expect(page).to have_content("Signed out successfully.")
     end
   end
-
 
 end
