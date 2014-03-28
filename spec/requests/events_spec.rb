@@ -18,8 +18,8 @@ describe "Event resource pages" do
 
     it "supports javaScript", :js => true do
       visit events_path
-      click_link "test_js"
-      page.should have_content("js works")
+      click_link "test js"
+      expect(page).to have_content("js works")
     end
 
     it "should have the content 'Timeline'" do
