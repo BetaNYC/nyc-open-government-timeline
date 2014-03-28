@@ -13,8 +13,8 @@ group :development, :test do
   gem "debugger"
   gem 'rspec-rails', '2.13.1'
   gem 'capybara', '2.1.0'
-  gem 'selenium-webdriver', '2.35.1'
-  gem 'launchy' #for save_and_open method, debugging
+  gem 'selenium-webdriver', '~> 2.40.0'
+  gem 'launchy' #for debugging with save_and_open_page method
 end
 
 group :production do 
