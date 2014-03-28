@@ -9,12 +9,8 @@ describe "User resource pages" do
     end
   end
 
-  describe "home page", :type => :feature do
-
-    before :each do
-      User.create(:email => 'jasper@example.com', :password => 'adoptabunny')
-    end
-
+  describe "user sign", :type => :feature do
+   
     it "signs a user in" do
       visit '/users/sign_in'
       within(".container") do
@@ -22,6 +18,7 @@ describe "User resource pages" do
         fill_in 'Password', :with => 'adoptabunny'
       end
       click_button 'Sign in'
+      save_and_open_page
       expect(page).to have_selector(".alert-notice", :text => "Signed in successfully.")
     end
   end

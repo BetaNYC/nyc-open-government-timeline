@@ -6,17 +6,15 @@ gem 'rails', '4.0.2'
 
 gem 'rack-cors', :require => 'rack/cors'
 
-# Use sqlite3 as the database for Active Record
-group :test do
-  gem 'selenium-webdriver', '2.35.1'
-  gem 'capybara', '2.1.0'
-end
 
 group :development, :test do
+  gem 'sqlite3', '1.3.8'
   gem "better_errors"
   gem "debugger"
-  gem 'sqlite3', '1.3.8'
   gem 'rspec-rails', '2.13.1'
+  gem 'capybara', '2.1.0'
+  gem 'selenium-webdriver', '2.35.1'
+  gem 'launchy' #for save_and_open method, debugging
 end
 
 group :production do 
