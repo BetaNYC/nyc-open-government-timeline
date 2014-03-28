@@ -16,11 +16,13 @@ describe "Event resource pages" do
 
   describe "Index" do 
 
-    it "supports javaScript", :js => true do
-      visit events_path
-      click_link "test js"
-      expect(page).to have_content("js works")
-    end
+    # mock js test via selenium web driver
+    
+    # it "supports javaScript", :js => true do
+    #   visit events_path
+    #   click_link "test js"
+    #   expect(page).to have_content("js works")
+    # end
 
     it "should have the content 'Timeline'" do
       visit '/events'
