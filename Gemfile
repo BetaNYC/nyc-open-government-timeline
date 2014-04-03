@@ -9,8 +9,9 @@ gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
-  gem "better_errors"
-  gem "debugger"
+  gem 'better_errors'
+  gem 'debugger'
+  gem 'mocha'
   gem 'rspec-rails', '2.13.1'
   gem 'capybara', '2.1.0'
   gem 'selenium-webdriver', '~> 2.40.0'
@@ -23,7 +24,7 @@ group :production do
 end
 
 # for multiple forms
-gem "nested_form"
+gem 'nested_form'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
